@@ -1,4 +1,3 @@
-
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,700,500);
 
 body {
@@ -122,12 +121,6 @@ label {
 .panel-login .form-group {
   padding: 0 30px;
 }
-.panel-login>.panel-heading .login {
-  padding: 20px 30px;
-  background: #2d3b55;
-  border-bottom-right-radius: 5px;
-  color: white;
-}
 .panel-login>.panel-heading .register {
   padding: 20px 30px;
   background: #2d3b55;
@@ -135,8 +128,8 @@ label {
 }
 .panel-login>.panel-heading a{
   text-decoration: none;
+  color: #666;
   font-weight: 300;
-  color: white;
   font-size: 16px;
   -webkit-transition: all 0.1s linear;
   -moz-transition: all 0.1s linear;
