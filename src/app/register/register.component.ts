@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../Model/User';
+import {RegisterService} from './register.service'
 
 @Component({
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [RegisterService]
 })
 export class RegisterComponent implements OnInit {
 
@@ -22,9 +24,11 @@ export class RegisterComponent implements OnInit {
     const user = new User(username, password, email);
 
     console.log(user.username + ' ' + user.password + ' ' + user.email);
+
+    this._registerService.signUp(user);
   }
 
-  constructor() { }
+  constructor(private _registerService: RegisterService) { }
 
   ngOnInit(): void{
   }

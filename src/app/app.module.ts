@@ -6,6 +6,11 @@ import { RegisterComponent } from './register/register.component';
 import {AppRoutingModule} from './app.routing.module';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import {LoginService} from './login/login.service';
+import {RegisterService} from './register/register.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,9 +21,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
