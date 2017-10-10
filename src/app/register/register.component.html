@@ -33,7 +33,7 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div *ngIf="statusCode==200" class="alert alert-success">Registration success!</div>
-                  <div *ngIf="statusCode!=200 && statusCode!=0" class="alert alert-danger">Error! {{statusCode.message}}</div>
+                  <div *ngIf="statusCode!=200 && statusCode!=0" class="alert alert-danger">Error! {{errorMessage}}</div>
                 </div>
               </div>
             </div>

@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from './login.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../Model/User';
+import { Exception } from '../exception/Exception';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [LoginService]
+  providers: [LoginService, Exception]
 })
 export class LoginComponent implements OnInit {
 

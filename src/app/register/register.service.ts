@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
-
+import { Exception } from '../exception/Exception';
 
 @Injectable()
 export class RegisterService {
 
-  constructor(private http:Http) {   }
+  constructor(private http:Http, private exception:Exception) {   }
 
 
   signUp(data) : Observable<any>{
@@ -14,10 +14,6 @@ export class RegisterService {
 
     return this.http.post(_url, data)
       .map(res => res)
-      .catch(this.handleError);
-  }
-
-  private handleError(error:any) {
-    return Observable.throw(error);
+      .catch(this.exception.handleError);
   }
 }

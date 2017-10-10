@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../Model/User';
-import {RegisterService} from './register.service'
+import {RegisterService} from './register.service';
+import { Exception } from '../exception/Exception';
 
 @Component({
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [RegisterService]
+  providers: [RegisterService, Exception]
 })
 export class RegisterComponent implements OnInit {
 

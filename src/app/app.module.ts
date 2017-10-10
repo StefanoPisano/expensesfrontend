@@ -10,7 +10,6 @@ import { HttpModule } from '@angular/http';
 import {LoginService} from './login/login.service';
 import {RegisterService} from './register/register.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
