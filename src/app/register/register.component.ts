@@ -16,22 +16,37 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
+  statusCode : number = 0;
+  errorMessage : string;
+
   signUp() {
+    this.resetStatus();
+
+    let _result = this._registerService.signUp(this.getUser())
+                        .subscribe(
+                          res => this.statusCode = res.status,
+                          err => {
+                            this.statusCode = JSON.parse(err._body).status
+                            this.errorMessage = JSON.parse(err._body).message
+                          }
+                        );
+  }
+
+  private getUser() {
     const username = this.registerForm.get('username').value;
     const password = this.registerForm.get('password').value;
     const email = this.registerForm.get('email').value;
 
-    const user = new User(username, password, email);
+    return new User(username, password, email);
+  }
 
-    console.log(user.username + ' ' + user.password + ' ' + user.email);
-
-    this._registerService.signUp(user);
+  private resetStatus() {
+    this.statusCode = 0;
+    this.errorMessage = "";
   }
 
   constructor(private _registerService: RegisterService) { }
 
   ngOnInit(): void{
   }
-
-
 }

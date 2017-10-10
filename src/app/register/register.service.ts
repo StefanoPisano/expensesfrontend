@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
 export class RegisterService {
 
-  constructor(private http:Http) { }
+  constructor(private http:Http) {   }
 
-  signUp(data) {
+
+  signUp(data) : Observable<any>{
     const _url = '/api/user/signup/';
-    this.http.post(_url, data).subscribe(
-      res => console.log(res)
-    );
+
+    return this.http.post(_url, data)
+      .map(res => res)
+      .catch(this.handleError);
+  }
+
+  private handleError(error:any) {
+    return Observable.throw(error);
   }
 }
