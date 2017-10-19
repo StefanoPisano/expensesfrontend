@@ -32,8 +32,10 @@ export class LoginComponent implements OnInit {
     const user = this.getUser();
     this._loginService.signIn(user)
     .subscribe(
-      res => this.statusCode = res.status,
-      err => {
+      res => {
+        this.statusCode = res.status;
+        localStorage.setItem('jwt', res.headers.get('x-auth-token'));  
+      }, err => {
         this.statusCode = JSON.parse(err._body).status;
         this.errorMessage = JSON.parse(err._body).message;
       }
