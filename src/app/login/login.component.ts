@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
   signIn(){
     this.resetStatus();
 
-    this._loginService.signIn(this.getUser())
+    const user = this.getUser();
+    this._loginService.signIn(user)
     .subscribe(
       res => this.statusCode = res.status,
       err => {
