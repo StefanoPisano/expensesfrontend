@@ -10,7 +10,6 @@ export class SecurityService implements CanActivate {
   }
 
   canActivate() {
-    console.log("Qui")
     if(localStorage.getItem("jwt") != null){
       console.log("sono true")
       return true;
