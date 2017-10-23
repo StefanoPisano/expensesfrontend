@@ -3,7 +3,7 @@ import {LoginService} from './login.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../Model/User';
 import { Exception } from '../exception/Exception';
-
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private _loginService: LoginService) { }
+  constructor(private _loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
     .subscribe(
       res => {
         this.statusCode = res.status;
-        localStorage.setItem('jwt', res.headers.get('x-auth-token'));  
+        localStorage.setItem('jwt', res.headers.get('x-auth-token'));
+        this.router.navigate(['home']);
       }, err => {
         this.statusCode = JSON.parse(err._body).status;
         this.errorMessage = JSON.parse(err._body).message;
