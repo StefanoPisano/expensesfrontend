@@ -5,17 +5,23 @@ import { Exception } from '../exception/Exception';
 import "rxjs/Rx";
 
 @Injectable()
-export class LoginService {
+export class ProfileService {
 
   constructor(private http:Http, private exception:Exception) { }
 
-  signIn(data) : Observable<any>{
-    let loginRequest = JSON.stringify({username: data.username, password: data.password});
-    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
-    const _url = '/api/login';
+  loadData() : Observable<any> {
+    const _url = '/api/user';
 
-    return this.http.post(_url, loginRequest, {headers: headers})
+    return this.http.get(_url, {headers: this.prepareHeaders()})
     .map( res => res )
     .catch(this.exception.handleError);
+  }
+
+  prepareHeaders(){
+    return new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-auth-token': localStorage.getItem('jwt')
+    });
   }
 }

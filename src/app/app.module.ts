@@ -10,13 +10,15 @@ import { HttpModule } from '@angular/http';
 import {LoginService} from './login/login.service';
 import {RegisterService} from './register/register.service';
 import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
