@@ -17,6 +17,20 @@ export class ProfileService {
     .catch(this.exception.handleError);
   }
 
+  updateUser(url, data) : Observable<any> {
+    const _url = url + "/" + data;
+    
+    return this.http.patch(_url, null, {headers: this.prepareHeaders()})
+    .map( res => res)
+    .catch(this.exception.handleError);
+  }
+
+  updatePostUser(url, email) : Observable<any> {
+    return this.http.post(url, email, {headers: this.prepareHeaders()})
+    .map( res => res)
+    .catch(this.exception.handleError);
+  }
+
   prepareHeaders(){
     return new Headers({
         'Content-Type': 'application/json',

@@ -14,8 +14,97 @@
         <div class="floated profile-stat following" id="num_following">245<br></div>
     </div>
   </div>
-  <div class="rela-block content">
+  <section>
+    <div class="container">
+        <div class="row">
+            <div class="board">
+                <div class="board-inner">
+                  <ul class="nav nav-tabs" id="myTab">
+                    <li class="active">
+                      <a href="#profile" data-toggle="tab" title="profile">
+                        <span class="round-tabs two">
+                          <i class="glyphicon glyphicon-user"></i>
+                        </span> 
+                      </a>
+                    </li>
 
-  </div>
-  <div class="rela-inline button more-images" ng-click="saveChanges()">Save changes</div>
+                    <li>
+                      <a href="#email" data-toggle="tab" title="email">
+                      <span class="round-tabs one">
+                        <i class="glyphicon glyphicon-envelope"></i>
+                      </span> 
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#password" data-toggle="tab" title="password">
+                        <span class="round-tabs three">
+                          <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                      </a>
+                    </li>
+                  <li>  
+                </ul>
+              </div>
+
+              <div class="tab-content">
+                <div class="tab-pane fade in active" id="profile">
+                    <h3 class="head text-center">Change your <span style="color:#f48260;">username!</span></h3>
+                        <div class="input-group" style="margin-left:35%">
+                            <span class="input-group-addon">
+                              <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            <form id="change-username-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changeUsernameForm">
+                              <input style="width:40%" id="usernameChange" type="text" class="form-control" name="username" placeholder="New Username" formControlName="usernameChange">
+                            </form>
+                          </div>
+                    
+                    <p class="text-center">
+                      <a (click)="changeUsername()" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                    </p>
+                </div>
+                
+                
+                <div class="tab-pane fade" id="email">
+                  <h3 class="head text-center">Change your <span style="color:#f48260;">email!</span></h3>
+                  <div class="input-group" style="margin-left:35%">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <form id="change-email-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changeEmailForm">
+                      <input style="width:40%" id="emailChange" type="text" class="form-control" name="email" placeholder="New Email" formControlName="emailChange">
+                    </form>
+                  </div>
+              
+                  <p class="text-center">
+                    <a (click)="changeEmail()" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                  </p>
+                </div>
+
+                <div class="tab-pane fade" id="password">
+                    <h3 class="head text-center">Change your <span style="color:#f48260;">password!</span></h3>
+                    <div class="input-group" style="margin-left:35%">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                      </span>
+                      <input style="width:40%" id="passwordChange" type="password" class="form-control" name="passwordChange" placeholder="New Password">
+                    </div>
+                
+                    <div class="input-group" style="margin-left:35%; margin-top:1%">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                      </span>
+                      <input style="width:40%" id="passwordRepeat" type="password" class="form-control" name="passwordRepeat" placeholder="Repeat Password">
+                    </div>
+
+                    <p class="text-center">
+                      <a href="" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
 </div>
