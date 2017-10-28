@@ -3,6 +3,13 @@
     -webkit-transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
     transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
   }
+
+  .alert-info {
+    width:40%;
+    margin: 1% auto;
+    font-size: .9em;
+    text-align: center
+  }
   .rela-block {
     display: block;
     position: relative;

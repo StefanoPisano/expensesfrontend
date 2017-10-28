@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from "@angular/router";
 import {ProfileService} from './profile.service';
 import { Exception } from '../exception/Exception';
 import {User} from '../Model/User';
@@ -26,7 +27,7 @@ export class ProfileComponent implements OnInit {
     passwordChange: new FormControl('', Validators.required),
   });
 
-  constructor(private profileService : ProfileService) {  
+  constructor(private profileService : ProfileService, private router: Router) {  
     this.user = new User('','','');
    }
 
@@ -50,9 +51,10 @@ export class ProfileComponent implements OnInit {
     
     this.profileService.updateUser(_url, tUser)
     .subscribe(
-      res => this.user.username = tUser.username,
+      res => this.router.navigate([""]),
       err => console.log(err)
     )
+    debugger;
   }
 
   changeEmail() {
