@@ -90,20 +90,30 @@
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-lock"></i>
                       </span>
-                      <input style="width:40%" id="passwordChange" type="password" class="form-control" name="passwordChange" placeholder="New Password">
+                      <form id="change-password-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changePasswordForm">                          
+                        <input style="width:40%" id="passwordChange" type="password" class="form-control" name="passwordChange" placeholder="New Password" formControlName="passwordChange">
+                      </form>
                     </div>
                 
                     <div class="input-group" style="margin-left:35%; margin-top:1%">
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-lock"></i>
                       </span>
-                      <input style="width:40%" id="passwordRepeat" type="password" class="form-control" name="passwordRepeat" placeholder="Repeat Password">
+                      <form id="change-password-form" action="#" method="post" role="form" style="display: block;" [formGroup]="repeatPasswordForm">                                                    
+                        <input style="width:40%" id="passwordRepeat" type="password" class="form-control" name="passwordRepeat" placeholder="Repeat Password" formControlName="repeatPassword">
+                      </form>
                     </div>
 
                     <p class="text-center">
-                      <a href="" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                      <a (click)="changePassword()" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
                     </p>
                 </div>
+                <div class="row">
+                <div class="col-lg-12">
+                  <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>                    
+                  <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+                </div>
+              </div>
                 <div class="clearfix"></div>
               </div>
             </div>

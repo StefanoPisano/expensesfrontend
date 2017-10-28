@@ -13,19 +13,26 @@ import {User} from '../Model/User';
 })
 export class ProfileComponent implements OnInit {
 
+  errorMessage : string;
+  successMessage : string;
   user : User;
 
   changeUsernameForm = new FormGroup({
-    usernameChange: new FormControl('', Validators.required),
+    usernameChange: new FormControl('', [Validators.required, Validators.minLength(3)])
   });
 
   changeEmailForm = new FormGroup({
-    emailChange: new FormControl('', Validators.required),
+    emailChange: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("[^ @]*@[^ @]*")])
   });
 
   changePasswordForm = new FormGroup({
-    passwordChange: new FormControl('', Validators.required),
+    passwordChange: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
+
+  repeatPasswordForm = new FormGroup({
+    repeatPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
+  });
+
 
   constructor(private profileService : ProfileService, private router: Router) {  
     this.user = new User('','','');
@@ -41,42 +48,69 @@ export class ProfileComponent implements OnInit {
       res => {
         this.user = JSON.parse(res._body);
       },
-      err => console.log(err)
+      err => this.errorMessage = JSON.parse(err._body).message
     )
   }
 
   changeUsername() {
-    const _url = '/api/user/changeUsername';
-    const tUser = this.getTempUser(this.changeUsernameForm, "usernameChange");
-    
-    this.profileService.updateUser(_url, tUser)
-    .subscribe(
-      res => this.router.navigate([""]),
-      err => console.log(err)
-    )
-    debugger;
+    this.resetStatus();
+    if(this.changeUsernameForm.valid){
+      const _url = '/api/user/changeUsername';
+      const tUser = this.getTempUser(this.changeUsernameForm, "usernameChange");
+      
+      this.profileService.updateUser(_url, tUser)
+      .subscribe(
+        res => this.router.navigate([""]),
+        err => this.errorMessage = JSON.parse(err._body).message
+      )
+    } else {
+      this.errorMessage = "Username must be at least 6 characters"
+    }
   }
 
   changeEmail() {
-    const _url = '/api/user/changeEmail';  
-    const tUser = this.getTempUser(this.changeEmailForm, "emailChange");
+    this.resetStatus();
+    if(this.changeEmailForm.valid) {
+      const _url = '/api/user/changeEmail';  
+      const tUser = this.getTempUser(this.changeEmailForm, "emailChange");
 
-    this.profileService.updateUser(_url, tUser)
-    .subscribe(
-      res => this.user.email = tUser.email,
-      err => console.log(err)
-    )
+      this.profileService.updateUser(_url, tUser)
+      .subscribe(
+        res => {
+          this.user.email = tUser.email
+          this.successMessage = "Email changed!"
+        },
+        err => this.errorMessage = JSON.parse(err._body).message
+      )
+    } else {
+      this.errorMessage = "Invalid Email!"      
+    }
   }
 
   changePassword() {
-    const _url = '/api/user/changePassword';    
-    const tUser = this.getTempUser(this.changePasswordForm, "passwordChange");
-    
-    this.profileService.updateUser(_url, tUser)
-    .subscribe(
-      res => this.user.password = tUser.password,
-      err => console.log(err)
-    )
+    this.resetStatus();
+    debugger;
+    if(this.isValidPassword() && this.changePasswordForm.valid) {
+      const _url = '/api/user/changePassword';    
+      const tUser = this.getTempUser(this.changePasswordForm, "passwordChange");
+      
+      this.profileService.updateUser(_url, tUser)
+      .subscribe(
+        res => {
+          this.user.password = tUser.password;
+          this.successMessage = "Password changed!"
+        },
+        err => this.errorMessage = JSON.parse(err._body).message
+      )
+    } else if(!this.isValidPassword()){
+      this.errorMessage = "Passwords don't match"
+    } else {
+      this.errorMessage = "Error changing password!"     
+    }
+  }
+
+  isValidPassword() : boolean {
+    return this.changePasswordForm.get("passwordChange").value == this.repeatPasswordForm.get("repeatPassword").value;
   }
 
   getTempUser(form:FormGroup, field:string) {
@@ -90,5 +124,10 @@ export class ProfileComponent implements OnInit {
       default :
         return new User('', '', _value);
     }
+  }
+
+  private resetStatus() {
+    this.errorMessage = "";
+    this.successMessage = "";
   }
 }

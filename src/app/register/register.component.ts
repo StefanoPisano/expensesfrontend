@@ -12,9 +12,9 @@ import { Exception } from '../exception/Exception';
 export class RegisterComponent implements OnInit {
 
   registerForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("[^ @]*@[^ @]*")]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
   statusCode : number = 0;
@@ -22,8 +22,11 @@ export class RegisterComponent implements OnInit {
 
   signUp() {
     this.resetStatus();
-
-    let _result = this._registerService.signUp(this.getUser())
+    debugger;
+    if(this.registerForm.valid) {
+    let _result = this.
+                  _registerService
+                  .signUp(this.getUser())
                         .subscribe(
                           res => this.statusCode = res.status,
                           err => {
@@ -31,6 +34,11 @@ export class RegisterComponent implements OnInit {
                             this.errorMessage = JSON.parse(err._body).message
                           }
                         );
+                      }
+                      else {
+                        this.statusCode = -1;
+                        this.errorMessage = "Error! Please remember that: username must be at least 3 characters, password at least 6"
+                      }
   }
 
   private getUser() {
