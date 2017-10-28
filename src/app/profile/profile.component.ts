@@ -39,7 +39,6 @@ export class ProfileComponent implements OnInit {
     .subscribe(
       res => {
         this.user = JSON.parse(res._body);
-        debugger;
       },
       err => console.log(err)
     )
@@ -47,34 +46,47 @@ export class ProfileComponent implements OnInit {
 
   changeUsername() {
     const _url = '/api/user/changeUsername';
-    const _data = this.changeUsernameForm.get('usernameChange').value;
-
-    this.profileService.updateUser(_url, _data)
+    const tUser = this.getTempUser(this.changeUsernameForm, "usernameChange");
+    
+    this.profileService.updateUser(_url, tUser)
     .subscribe(
-      res => this.user.username = _data,
+      res => this.user.username = tUser.username,
       err => console.log(err)
     )
   }
 
   changeEmail() {
     const _url = '/api/user/changeEmail';  
-    const _data = this.changeEmailForm.get('emailChange').value;
-    
-    this.profileService.updatePostUser(_url, _data)
+    const tUser = this.getTempUser(this.changeEmailForm, "emailChange");
+
+    this.profileService.updateUser(_url, tUser)
     .subscribe(
-      res => this.user.email = _data,
+      res => this.user.email = tUser.email,
       err => console.log(err)
     )
   }
 
   changePassword() {
     const _url = '/api/user/changePassword';    
-    const _data = this.changePasswordForm.get('passwordChange').value;
+    const tUser = this.getTempUser(this.changePasswordForm, "passwordChange");
     
-    this.profileService.updateUser(_url, _data)
+    this.profileService.updateUser(_url, tUser)
     .subscribe(
-      res => this.user.password = _data,
+      res => this.user.password = tUser.password,
       err => console.log(err)
     )
+  }
+
+  getTempUser(form:FormGroup, field:string) {
+    const _value = form.get(field).value;
+
+    switch(field) {
+      case 'usernameChange' :
+        return new User(_value, '', '');
+      case 'passwordChange' :
+        return new User('', _value, '');
+      default :
+        return new User('', '', _value);
+    }
   }
 }

@@ -11,7 +11,6 @@ export class SecurityService implements CanActivate {
 
   canActivate() {
     if(localStorage.getItem("jwt") != null){
-      console.log("sono true")
       return true;
     } else {
       this.router.navigate(['/']);
