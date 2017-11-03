@@ -5,8 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
 import {SecurityService} from './security/security.service';
 import {ProfileComponent} from './profile/profile.component';
-
-
+import {MonthlyComponent} from './monthly/monthly.component';
 
 const appRoutes: Routes = [
   { 
@@ -24,6 +23,11 @@ const appRoutes: Routes = [
   { 
     path: 'profile', 
     component: ProfileComponent, 
+    canActivate: [SecurityService]
+  },
+  {
+    path: 'monthly',
+    component: MonthlyComponent,
     canActivate: [SecurityService]
   }
 ];
