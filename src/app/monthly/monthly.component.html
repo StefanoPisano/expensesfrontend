@@ -45,22 +45,22 @@
                         </div>
                         <div class="tab-pane fade fade" id="addMonthly">
                             <div class="get-in-touch">
-                                <h1 class="title">add something</h1>
-                                <form class="contact-form row">
+                                <h1 class="title">add something</h1>                                    
+                                <form class="contact-form row" [formGroup]="addExpensesForm">
                                    <div class="form-field col x-50">
-                                      <input id="dexcription" class="input-text js-input" type="text" required>
+                                      <input id="dexcription" class="input-text js-input" type="text" formControlName="addDescription" required>
                                       <label class="label" for="description">Description</label>
                                    </div>
                                    <div class="form-field col x-50">
-                                      <input type="date"/>
+                                      <input type="date" formControlName="addDate" required>
                                       <label class="label" for="when">When?</label>
                                    </div>
                                    <div class="form-field col x-100">
-                                      <input id="howmuch" class="input-text js-input" type="number" step="0.01" min=0 required>
+                                      <input id="howmuch" class="input-text js-input" type="number" step="0.01" min=0 formControlName="addPrice" required>
                                       <label class="label" for="howmuch">How Much?</label>
                                    </div>
                                    <div class="form-field col x-100 align-center">
-                                      <input class="submit-btn" type="submit" value="Submit">
+                                      <a class="submit-btn" (click)="addExpenses()">Add</a>
                                    </div>
                                 </form>
                               </div>
