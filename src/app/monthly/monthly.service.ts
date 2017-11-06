@@ -17,6 +17,14 @@ export class MonthlyService {
     .catch(this.exception.handleError);
   }
 
+  getCategories() : Observable<any> {
+    const _url = '/api/monthly/categories';
+
+    return this.http.get(_url, {headers: this.prepareHeaders()})
+    .map( res => res )
+    .catch(this.exception.handleError);
+  }
+
   prepareHeaders(){
     return new Headers({
         'Content-Type': 'application/json',
