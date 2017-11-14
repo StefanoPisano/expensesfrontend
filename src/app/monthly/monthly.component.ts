@@ -16,6 +16,8 @@ export class MonthlyComponent implements OnInit {
   errorMessage : string;
   successMessage ; string;
   categories: any[];
+  listOfExpenses: Expenses[];
+  expense:Expenses;
 
   addExpensesForm = new FormGroup({
     addDescription: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -24,7 +26,10 @@ export class MonthlyComponent implements OnInit {
     addCategory: new FormControl('', Validators.required)  
   });
 
-  constructor(private monthlyService : MonthlyService) { }
+  constructor(private monthlyService : MonthlyService) { 
+    this.expense = new Expenses("", "", 0.0, new Date, "");
+    this.getExpenses();
+  }
 
   ngOnInit() {
     this.monthlyService.getCategories()
@@ -36,13 +41,25 @@ export class MonthlyComponent implements OnInit {
     )
   }
 
+  getExpenses() {
+    this.monthlyService.getExpenses()
+    .subscribe(
+      res => {
+        this.listOfExpenses = JSON.parse(res._body);
+        debugger;
+      },
+      err => console.log(err)
+      )
+    }
+
   addExpenses() {
     this.resetStatus();
     
     const _exp = new Expenses(this.addExpensesForm.get("addDescription").value,
                               this.addExpensesForm.get("addCategory").value, 
                               this.addExpensesForm.get("addPrice").value,
-                              this.addExpensesForm.get("addDate").value
+                              this.addExpensesForm.get("addDate").value,
+                              ""
                             );
     if(this.addExpensesForm.valid) {
       this.monthlyService.saveExpenses(_exp)

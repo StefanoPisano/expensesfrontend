@@ -12,6 +12,7 @@ import {RegisterService} from './register/register.service';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MonthlyComponent } from './monthly/monthly.component';
+import { ExpenseComponent } from './expense/expense.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MonthlyComponent } from './monthly/monthly.component';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-    MonthlyComponent
+    MonthlyComponent,
+    ExpenseComponent
   ],
   imports: [
     BrowserModule,

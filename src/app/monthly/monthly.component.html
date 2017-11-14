@@ -24,25 +24,7 @@
                     </div>
     
                     <div class="tab-content">
-                        <div class="tab-pane in active" id="listOfMonthly">
-                            <div class="col-sm-12">
-                                <div class="bs-calltoaction bs-calltoaction-default">
-                                    <div class="row">
-                                        <div class="col-md-9 cta-contents">
-                                            <h1 class="cta-title">Its a Call To Action</h1>
-                                            <div class="cta-desc">
-                                                <p>Describe the action here.</p>
-                                                <p>Describe the action here.</p>
-                                                <p>Describe the action here.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 cta-button">
-                                            <a href="#" class="btn btn-lg btn-block btn-default">Go for It!</a>
-                                        </div>
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                        <app-expense *ngFor="let expense of listOfExpenses" [expense]=expense></app-expense>
                         <div class="tab-pane fade fade" id="addMonthly">
                             <div class="row">
                                 <form role="form" class="form-horizontal" [formGroup]="addExpensesForm">
