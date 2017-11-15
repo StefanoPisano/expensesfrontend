@@ -1,9 +1,16 @@
 
-<div class="row">
-    <div class="col-md-9 cta-contents">
-        <h3 class="cta-title" >{{expense.description}}</h3>
-        <div class="cta-desc">
-            <kbd>#{{expense.category}}</kbd> Price: <code>{{expense.price}}</code> on <samp>{{expense.stringDate}}</samp>
+<section>
+    <div class="row" class="container">
+        <div class="col-md-11">
+            <h2>{{expense.description}}</h2>
+        </div>
+        <div class="col-md-1">
+            <h3>{{expense.price}}</h3>
         </div>
     </div>
-</div>
+    <div class="row" class="container">
+        <div class="col-md-12" class="footerExpense">
+            <kbd>#{{expense.category}}</kbd>  <span class="date">on <samp>{{expense.stringDate}}</samp></span>
+        </div>
+    </div>
+</section>

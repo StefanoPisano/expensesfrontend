@@ -47,23 +47,47 @@
     padding-bottom: 10px;
 }
 
+.tab-pane {
+    padding-top: 1% !important
+}
+
+.budget {
+    margin: 2% 0
+}
+
+.progress {
+    border-radius: 0;
+    height: 2em
+}
+
+.progress-bar {
+    font-size:  1.2em;
+    text-align: center;
+    padding-top: .3%
+}
+
+.total {
+    width: 95%;
+    text-align:right;
+}
+
 @media (max-width: 991px){
     .bs-calltoaction > .row{
         display:block;
         width: auto;
     }
 
-        .bs-calltoaction > .row > [class^="col-"],
-        .bs-calltoaction > .row > [class*=" col-"]{
-            float:none;
-            display:block;
-            vertical-align:middle;
-            position: relative;
-        }
+    .bs-calltoaction > .row > [class^="col-"],
+    .bs-calltoaction > .row > [class*=" col-"]{
+        float:none;
+        display:block;
+        vertical-align:middle;
+        position: relative;
+    }
 
-        .cta-contents{
-            text-align: center;
-        }
+    .cta-contents{
+        text-align: center;
+    }
 }
 
 

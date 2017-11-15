@@ -6,7 +6,7 @@
                         <ul class="nav nav-tabs" id="myTab">
                             <div class="liner"></div>
                             <li class="active">
-                                <a href="#listOfMonthly" data-toggle="tab" title="listOfMonthly">
+                                <a href="#listOfMonthly" data-toggle="tab" title="listOfMonthly" (click)="updateList()">
                                 <span class="round-tabs two">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </span>
@@ -22,9 +22,19 @@
                             </li>
                         </ul>
                     </div>
-    
+                    <div class="budget">
+                        <div class="total"><h4>Total Budget:</h4> {{budget}} </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" attr.aria-valuenow="{{remaing}}"
+                            aria-valuemin="0" aria-valuemax="100" [style.width]="getWidth()">
+                                Budget {{remaining}}
+                            </div>
+                        </div>
+                    </div>
                     <div class="tab-content">
-                        <app-expense *ngFor="let expense of listOfExpenses" [expense]=expense></app-expense>
+                        <div class="tab-pane active"  id="listOfMonthly">
+                            <app-expense *ngFor="let expense of listOfExpenses" [expense]=expense></app-expense>                                
+                        </div>
                         <div class="tab-pane fade fade" id="addMonthly">
                             <div class="row">
                                 <form role="form" class="form-horizontal" [formGroup]="addExpensesForm">

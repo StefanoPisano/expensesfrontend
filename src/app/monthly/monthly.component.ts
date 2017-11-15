@@ -17,7 +17,8 @@ export class MonthlyComponent implements OnInit {
   successMessage ; string;
   categories: any[];
   listOfExpenses: Expenses[];
-  expense:Expenses;
+  remaining: number;
+  budget: number;
 
   addExpensesForm = new FormGroup({
     addDescription: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -27,8 +28,8 @@ export class MonthlyComponent implements OnInit {
   });
 
   constructor(private monthlyService : MonthlyService) { 
-    this.expense = new Expenses("", "", 0.0, new Date, "");
     this.getExpenses();
+    this.remaining = 90;
   }
 
   ngOnInit() {
@@ -41,16 +42,23 @@ export class MonthlyComponent implements OnInit {
     )
   }
 
+  getWidth() {
+    return this.remaining + "%";
+  }
+
   getExpenses() {
     this.monthlyService.getExpenses()
     .subscribe(
       res => {
         this.listOfExpenses = JSON.parse(res._body);
-        debugger;
       },
       err => console.log(err)
       )
     }
+
+  updateList() {
+    this.getExpenses();
+  }
 
   addExpenses() {
     this.resetStatus();
