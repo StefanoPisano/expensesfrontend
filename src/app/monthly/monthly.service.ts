@@ -25,6 +25,14 @@ export class MonthlyService {
     .catch(this.exception.handleError);
   }
 
+  getRemaining() {
+    const _url = '/api/budget/remaining';
+    
+    return this.http.get(_url, {headers: this.prepareHeaders()})
+    .map(res => res)
+    .catch(this.exception.handleError);
+  }
+
   getCategories() : Observable<any> {
     const _url = '/api/monthly/categories';
 

@@ -6,7 +6,7 @@
                         <ul class="nav nav-tabs" id="myTab">
                             <div class="liner"></div>
                             <li class="active">
-                                <a href="#listOfMonthly" data-toggle="tab" title="listOfMonthly" (click)="updateList()">
+                                <a href="#listOfMonthly" data-toggle="tab" title="listOfMonthly" (click)="updateList(); getRemaining()">
                                 <span class="round-tabs two">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </span>
@@ -23,7 +23,9 @@
                         </ul>
                     </div>
                     <div class="budget">
-                        <div class="total"><h4>Total Budget:</h4> {{budget}} </div>
+                        <div class="total"><h4>Total Budget: <em>{{budget}}</em></h4></div>
+                        <div class="total"><h4>Remaining Budget: <em>{{remaining}}</em></h4></div>
+                        
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" attr.aria-valuenow="{{remaing}}"
                             aria-valuemin="0" aria-valuemax="100" [style.width]="getWidth()">

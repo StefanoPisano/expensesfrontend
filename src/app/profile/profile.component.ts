@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ProfileService} from './profile.service';
 import { Exception } from '../exception/Exception';
 import {User} from '../Model/User';
+import {Budget} from '../Model/Budget';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,7 @@ export class ProfileComponent implements OnInit {
   errorMessage : string;
   successMessage : string;
   user : User;
+  budget : number;
 
   changeUsernameForm = new FormGroup({
     usernameChange: new FormControl('', [Validators.required, Validators.minLength(3)])
@@ -33,6 +35,9 @@ export class ProfileComponent implements OnInit {
     repeatPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
+  changeBudgetForm = new FormGroup({
+    budgetChange: new FormControl('', [Validators.required])
+  });
 
   constructor(private profileService : ProfileService, private router: Router) {  
     this.user = new User('','','');
@@ -40,6 +45,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
+    this.getBudget();
   }
 
   loadData() {
@@ -89,7 +95,7 @@ export class ProfileComponent implements OnInit {
 
   changePassword() {
     this.resetStatus();
-    debugger;
+
     if(this.isValidPassword() && this.changePasswordForm.valid) {
       const _url = '/api/user/changePassword';    
       const tUser = this.getTempUser(this.changePasswordForm, "passwordChange");
@@ -106,6 +112,31 @@ export class ProfileComponent implements OnInit {
       this.errorMessage = "Passwords don't match"
     } else {
       this.errorMessage = "Error changing password!"     
+    }
+  }
+
+  getBudget() {
+    this.profileService.loadBudget()
+    .subscribe(
+      res => this.budget = JSON.parse(res._body).total,
+      err => this.errorMessage = "Error while retrieving budget"
+    )
+  }
+
+  changeBudget() {
+    if(this.changeBudgetForm.valid) {
+      const _url = '/api/budget';
+      const _dto = new Budget(this.changeBudgetForm.get("budgetChange").value);
+
+      this.profileService.updatBudget(_url, _dto)
+      .subscribe(
+        res => {
+          this.successMessage = "Budget Saved!";
+          this.budget = _dto.total;
+          this.getBudget();
+        },
+        err => this.errorMessage = "Error while changing budget"
+      )
     }
   }
 

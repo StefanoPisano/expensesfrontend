@@ -8,7 +8,7 @@ section {
     border-bottom: none
 }
 #myTab {
-    margin-left: 28%
+    margin-left: 15%
     
 }
 .board{
@@ -123,18 +123,7 @@ li.active span.round-tabs.five{
 .nav-tabs > li {
     width: 20%;
 }
-/*li.active:before {
-    content: " ";
-    position: absolute;
-    left: 45%;
-    opacity:0;
-    margin: 0 auto;
-    bottom: -2px;
-    border: 10px solid transparent;
-    border-bottom-color: #fff;
-    z-index: 1;
-    transition:0.2s ease-in-out;
-}*/
+
 .nav-tabs > li:after {
     content: " ";
     position: absolute;

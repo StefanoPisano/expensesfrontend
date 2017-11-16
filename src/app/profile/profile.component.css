@@ -14,28 +14,16 @@
     display: block;
     position: relative;
     margin: auto;
-    top: ;
-    left: ;
-    right: ;
-    bottom: ;
   }
   .rela-inline {
     display: inline-block;
     position: relative;
     margin: auto;
-    top: ;
-    left: ;
-    right: ;
-    bottom: ;
   }
   .floated {
     display: inline-block;
     position: relative;
     margin: false;
-    top: ;
-    left: ;
-    right: ;
-    bottom: ;
     float: left;
   }
   .floated.right {
@@ -59,9 +47,6 @@
     position: absolute;
     margin: false;
     top: 50%;
-    left: ;
-    right: ;
-    bottom: ;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
   }
@@ -433,13 +418,13 @@
     color: #999;
   }
   .works::after {
-    content: "works";
+    content: "empty";
   }
-  .followers::after {
-    content: "followers";
+  .budget::after {
+    content: "current budget";
   }
   .following::after {
-    content: "following";
+    content: "empty";
   }
   .image {
     width: 240px;

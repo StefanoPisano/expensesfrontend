@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Exception } from '../exception/Exception';
 import {MonthlyService} from './monthly.service';
+import {ProfileService} from '../profile/profile.service';
 import {Expenses} from '../Model/Expenses';
 
 
@@ -9,7 +10,7 @@ import {Expenses} from '../Model/Expenses';
   selector: 'app-monthly',
   templateUrl: './monthly.component.html',
   styleUrls: ['./monthly.component.css', '../home/home.component.css', './monthlyadd.component.css'],
-  providers: [MonthlyService, Exception]
+  providers: [MonthlyService, ProfileService, Exception]
 })
 export class MonthlyComponent implements OnInit {
 
@@ -27,9 +28,10 @@ export class MonthlyComponent implements OnInit {
     addCategory: new FormControl('', Validators.required)  
   });
 
-  constructor(private monthlyService : MonthlyService) { 
+  constructor(private monthlyService : MonthlyService, private profileService : ProfileService) { 
     this.getExpenses();
-    this.remaining = 90;
+    this.getBudget();
+    this.getRemaining();
   }
 
   ngOnInit() {
@@ -42,8 +44,19 @@ export class MonthlyComponent implements OnInit {
     )
   }
 
+  getBudget() {
+    this.profileService.loadBudget()
+    .subscribe(
+      res => this.budget = JSON.parse(res._body).total,
+      err => this.errorMessage = "Error while retrieving budget"
+    )
+  }
+
   getWidth() {
-    return this.remaining + "%";
+    if(this.remaining >= 0) {
+      return (this.budget - this.remaining)/(this.budget/100) + "%";
+    }
+    return "100%";
   }
 
   getExpenses() {
@@ -53,6 +66,16 @@ export class MonthlyComponent implements OnInit {
         this.listOfExpenses = JSON.parse(res._body);
       },
       err => console.log(err)
+      )
+    }
+
+    getRemaining() {
+      this.monthlyService.getRemaining()
+      .subscribe(
+        res => {
+          this.remaining = JSON.parse(res._body);
+        },
+        err => console.log(err)
       )
     }
 
