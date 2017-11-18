@@ -70,8 +70,4 @@ export class MonthlyComponent implements OnInit {
         err => this.errorMessage = "Error while retrieving remaining budget"
       )
     }
-
-  updateList() {
-    this.getExpenses();
-  }
 }

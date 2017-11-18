@@ -60,7 +60,12 @@ export class ProfileComponent implements OnInit {
 
   changeUsername() {
     this.resetStatus();
-    if(this.changeUsernameForm.valid){
+
+    if(!this.changeUsernameForm.valid){
+      this.errorMessage = "Username must be at least 6 characters"
+      return;
+    }
+
       const _url = '/api/user/changeUsername';
       const tUser = this.getTempUser(this.changeUsernameForm, "usernameChange");
       
@@ -69,14 +74,16 @@ export class ProfileComponent implements OnInit {
         res => this.router.navigate([""]),
         err => this.errorMessage = JSON.parse(err._body).message
       )
-    } else {
-      this.errorMessage = "Username must be at least 6 characters"
-    }
   }
 
   changeEmail() {
     this.resetStatus();
-    if(this.changeEmailForm.valid) {
+
+    if(!this.changeEmailForm.valid) {
+      this.errorMessage = "Invalid Email!"      
+      return;      
+    }
+
       const _url = '/api/user/changeEmail';  
       const tUser = this.getTempUser(this.changeEmailForm, "emailChange");
 
@@ -88,15 +95,21 @@ export class ProfileComponent implements OnInit {
         },
         err => this.errorMessage = JSON.parse(err._body).message
       )
-    } else {
-      this.errorMessage = "Invalid Email!"      
-    }
   }
 
   changePassword() {
     this.resetStatus();
 
-    if(this.isValidPassword() && this.changePasswordForm.valid) {
+    if(!this.isValidPassword()){
+      this.errorMessage = "Passwords don't match";
+      return;
+    }
+
+    if(!this.changePasswordForm.valid) {
+      this.errorMessage = "Password must be at least 6 characters long";
+      return;
+    }
+
       const _url = '/api/user/changePassword';    
       const tUser = this.getTempUser(this.changePasswordForm, "passwordChange");
       
@@ -108,11 +121,6 @@ export class ProfileComponent implements OnInit {
         },
         err => this.errorMessage = JSON.parse(err._body).message
       )
-    } else if(!this.isValidPassword()){
-      this.errorMessage = "Passwords don't match"
-    } else {
-      this.errorMessage = "Error changing password!"     
-    }
   }
 
   getBudget() {

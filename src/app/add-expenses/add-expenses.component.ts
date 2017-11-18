@@ -40,37 +40,39 @@ export class AddExpensesComponent implements OnInit {
 
   addExpenses() {
     this.resetStatus();
-    
-    if(this.addExpensesForm.valid) {
-      var _price = this.addExpensesForm.get("addPrice").value;
-
-      if( this.addExpensesForm.get("inout").value == "out") {
-        _price = _price * -1;
-      }
-      const _exp = new Expenses(this.addExpensesForm.get("addDescription").value,
-      this.addExpensesForm.get("addCategory").value, 
-      _price,
-      this.addExpensesForm.get("addDate").value,
-      ""
-    );
-
-
-
-      this.monthlyService.saveExpenses(_exp)
-      .subscribe(
-        res => {
-          this.successMessage = "Saved!"
-        },
-        err => this.errorMessage =  JSON.parse(err._body).message
-      )
-    } else {
+     
+    if(!this.addExpensesForm.valid) {
       this.errorMessage = "Invalid expenses, please check your data.";
-    }             
+      return;      
+    }
+
+    this.monthlyService.saveExpenses(this.getExpenseDto())
+    .subscribe(
+      res => {
+        this.successMessage = "Saved!"
+      },
+      err => this.errorMessage =  JSON.parse(err._body).message
+    );            
+  }
+
+  private getExpenseDto() : Expenses{
+    const inout = this.addExpensesForm.get("inout").value;
+    const _description = this.addExpensesForm.get("addDescription").value;
+    const _category =  this.addExpensesForm.get("addCategory").value;
+    const _date =  this.addExpensesForm.get("addDate").value;
+
+    var _price;
+    if(inout === "out")  {
+      _price = this.addExpensesForm.get("addPrice").value * -1;
+    } else {
+      _price = this.addExpensesForm.get("addPrice").value;
+    }
+
+    return new Expenses(_description, _category, _price, _date, "");
   }
 
   private resetStatus() {
     this.errorMessage = "";
     this.successMessage = "";
   }
-
 }
