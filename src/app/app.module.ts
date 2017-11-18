@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { AddExpensesComponent } from './add-expenses/add-expenses.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddExpensesComponent } from './add-expenses/add-expenses.component';
     ProfileComponent,
     MonthlyComponent,
     ExpenseComponent,
-    AddExpensesComponent
+    AddExpensesComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

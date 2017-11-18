@@ -136,8 +136,7 @@
 
                 <div class="row">
                   <div class="col-lg-12">
-                    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>                    
-                    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+                    <app-messages [message]=message></app-messages>                    
                   </div>
                 </div>
                 <div class="clearfix"></div>

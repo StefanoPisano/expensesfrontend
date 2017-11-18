@@ -23,8 +23,7 @@
           </div>
           <div class="row">
             <div class="col-lg-12">
-              <div *ngIf="statusCode==200" class="alert alert-success">Login success!</div>
-              <div *ngIf="statusCode!=200 && statusCode!=0" class="alert alert-danger">Error! {{errorMessage}}</div>
+              <app-messages [message]=message></app-messages>
             </div>
           </div>
         </div>

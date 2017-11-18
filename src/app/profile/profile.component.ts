@@ -5,6 +5,7 @@ import {ProfileService} from './profile.service';
 import { Exception } from '../exception/Exception';
 import {User} from '../Model/User';
 import {Budget} from '../Model/Budget';
+import { Message } from '../Model/Message';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +15,7 @@ import {Budget} from '../Model/Budget';
 })
 export class ProfileComponent implements OnInit {
 
-  errorMessage : string;
-  successMessage : string;
+  message : Message;
   user : User;
   budget : number;
 
@@ -40,7 +40,8 @@ export class ProfileComponent implements OnInit {
   });
 
   constructor(private profileService : ProfileService, private router: Router) {  
-    this.user = new User('','','');
+    this.user = new User("","","");
+    this.message = new Message("", "");
    }
 
   ngOnInit() {
@@ -54,7 +55,7 @@ export class ProfileComponent implements OnInit {
       res => {
         this.user = JSON.parse(res._body);
       },
-      err => this.errorMessage = JSON.parse(err._body).message
+      err => this.message.error = JSON.parse(err._body).message
     )
   }
 
@@ -62,7 +63,7 @@ export class ProfileComponent implements OnInit {
     this.resetStatus();
 
     if(!this.changeUsernameForm.valid){
-      this.errorMessage = "Username must be at least 6 characters"
+      this.message.error = "Username must be at least 6 characters"
       return;
     }
 
@@ -72,7 +73,7 @@ export class ProfileComponent implements OnInit {
       this.profileService.updateUser(_url, tUser)
       .subscribe(
         res => this.router.navigate([""]),
-        err => this.errorMessage = JSON.parse(err._body).message
+        err => this.message.error = JSON.parse(err._body).message
       )
   }
 
@@ -80,58 +81,60 @@ export class ProfileComponent implements OnInit {
     this.resetStatus();
 
     if(!this.changeEmailForm.valid) {
-      this.errorMessage = "Invalid Email!"      
+      this.message.error = "Invalid Email!"      
       return;      
     }
 
-      const _url = '/api/user/changeEmail';  
-      const tUser = this.getTempUser(this.changeEmailForm, "emailChange");
+    const _url = '/api/user/changeEmail';  
+    const tUser = this.getTempUser(this.changeEmailForm, "emailChange");
 
-      this.profileService.updateUser(_url, tUser)
-      .subscribe(
-        res => {
-          this.user.email = tUser.email
-          this.successMessage = "Email changed!"
-        },
-        err => this.errorMessage = JSON.parse(err._body).message
-      )
+    this.profileService.updateUser(_url, tUser)
+    .subscribe(
+      res => {
+        this.user.email = tUser.email
+        this.message.success = "Email changed!"
+      },
+      err => this.message.error = JSON.parse(err._body).message
+    )
   }
 
   changePassword() {
     this.resetStatus();
 
     if(!this.isValidPassword()){
-      this.errorMessage = "Passwords don't match";
+      this.message.error = "Passwords don't match";
       return;
     }
 
     if(!this.changePasswordForm.valid) {
-      this.errorMessage = "Password must be at least 6 characters long";
+      this.message.error = "Password must be at least 6 characters long";
       return;
     }
 
-      const _url = '/api/user/changePassword';    
-      const tUser = this.getTempUser(this.changePasswordForm, "passwordChange");
-      
-      this.profileService.updateUser(_url, tUser)
-      .subscribe(
-        res => {
-          this.user.password = tUser.password;
-          this.successMessage = "Password changed!"
-        },
-        err => this.errorMessage = JSON.parse(err._body).message
-      )
+    const _url = '/api/user/changePassword';    
+    const tUser = this.getTempUser(this.changePasswordForm, "passwordChange");
+    
+    this.profileService.updateUser(_url, tUser)
+    .subscribe(
+      res => {
+        this.user.password = tUser.password;
+        this.message.success = "Password changed!"
+      },
+      err => this.message.error = JSON.parse(err._body).message
+    )
   }
 
   getBudget() {
     this.profileService.loadBudget()
     .subscribe(
       res => this.budget = JSON.parse(res._body).total,
-      err => this.errorMessage = "Error while retrieving budget"
+      err => this.message.error = "Error while retrieving budget"
     )
   }
 
   changeBudget() {
+    this.resetStatus();
+
     if(this.changeBudgetForm.valid) {
       const _url = '/api/budget';
       const _dto = new Budget(this.changeBudgetForm.get("budgetChange").value);
@@ -139,11 +142,11 @@ export class ProfileComponent implements OnInit {
       this.profileService.updatBudget(_url, _dto)
       .subscribe(
         res => {
-          this.successMessage = "Budget Saved!";
+          this.message.success = "Budget Saved!";
           this.budget = _dto.total;
           this.getBudget();
         },
-        err => this.errorMessage = "Error while changing budget"
+        err => this.message.error = "Error while changing budget"
       )
     }
   }
@@ -166,7 +169,6 @@ export class ProfileComponent implements OnInit {
   }
 
   private resetStatus() {
-    this.errorMessage = "";
-    this.successMessage = "";
+    this.message = new Message("", "");
   }
 }

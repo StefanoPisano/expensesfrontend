@@ -46,7 +46,6 @@
 </div>
 <div class="row" style="margin-top:1%">
   <div class="col-md-5 col-md-offset-4">
-      <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>                    
-      <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    <app-messages [message]=message></app-messages>
   </div>
 </div>

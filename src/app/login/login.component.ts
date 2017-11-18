@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../Model/User';
 import { Exception } from '../exception/Exception';
 import {Router} from "@angular/router";
+import { Message } from '../Model/Message';
 
 @Component({
   selector: 'app-login',
@@ -13,15 +14,16 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  statusCode : number = 0;
-  errorMessage : string;
+  message:Message;
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private _loginService: LoginService, private router: Router) { }
+  constructor(private _loginService: LoginService, private router: Router) {
+    this.message = new Message("", "");
+  }
 
   ngOnInit() {
   }
@@ -33,13 +35,11 @@ export class LoginComponent implements OnInit {
     this._loginService.signIn(user)
     .subscribe(
       res => {
-        this.statusCode = res.status;
+        this.message.success = "Login Success!";
         localStorage.setItem('jwt', res.headers.get('x-auth-token'));
         this.router.navigate(['home']);
-      }, err => {
-        this.statusCode = JSON.parse(err._body).status;
-        this.errorMessage = JSON.parse(err._body).message;
-      }
+      }, 
+      err => this.message.error = JSON.parse(err._body).message
     );
   }
 
@@ -51,8 +51,7 @@ export class LoginComponent implements OnInit {
   }
 
   private resetStatus() {
-    this.statusCode = 0;
-    this.errorMessage = "";
+    this.message = new Message("", "");
   }
 
 }

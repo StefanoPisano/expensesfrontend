@@ -4,6 +4,7 @@ import { Exception } from '../exception/Exception';
 import {MonthlyService} from './monthly.service';
 import {ProfileService} from '../profile/profile.service';
 import {Expenses} from '../Model/Expenses';
+import { Message } from '../Model/Message';
 
 
 @Component({
@@ -14,13 +15,13 @@ import {Expenses} from '../Model/Expenses';
 })
 export class MonthlyComponent implements OnInit {
 
-  errorMessage : string;
-  successMessage ; string;
+  message : Message;
   listOfExpenses: Expenses[];
   remaining: number;
   budget: number;
 
   constructor(private monthlyService : MonthlyService, private profileService : ProfileService) { 
+    this.message = new Message ("", "");
     this.getExpenses();
     this.getBudget();
     this.getRemaining();
@@ -33,7 +34,7 @@ export class MonthlyComponent implements OnInit {
     this.profileService.loadBudget()
     .subscribe(
       res => this.budget = JSON.parse(res._body).total,
-      err => this.errorMessage = "Error while retrieving budget"
+      err => this.message.error = "Error while retrieving budget"
     )
   }
 
@@ -57,7 +58,7 @@ export class MonthlyComponent implements OnInit {
       res => {
         this.listOfExpenses = JSON.parse(res._body);
       },
-      err => this.errorMessage = "Error while retrieving expenses"
+      err => this.message.error = "Error while retrieving expenses"
       )
     }
 
@@ -67,7 +68,7 @@ export class MonthlyComponent implements OnInit {
         res => {
           this.remaining = JSON.parse(res._body);
         },
-        err => this.errorMessage = "Error while retrieving remaining budget"
+        err => this.message.error = "Error while retrieving remaining budget"
       )
     }
 }

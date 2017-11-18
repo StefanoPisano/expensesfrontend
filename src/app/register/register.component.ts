@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../Model/User';
 import {RegisterService} from './register.service';
 import { Exception } from '../exception/Exception';
+import { Message } from '../Model/Message';
 
 @Component({
   templateUrl: './register.component.html',
@@ -17,28 +18,27 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
-  statusCode : number = 0;
-  errorMessage : string;
+  message : Message;
+
+  constructor(private _registerService: RegisterService) {
+    this.message = new Message("", "");
+  }
+  
+  ngOnInit(): void{
+  }
 
   signUp() {
     this.resetStatus();
-    debugger;
-    if(this.registerForm.valid) {
-    let _result = this.
-                  _registerService
-                  .signUp(this.getUser())
-                        .subscribe(
-                          res => this.statusCode = res.status,
-                          err => {
-                            this.statusCode = JSON.parse(err._body).status
-                            this.errorMessage = JSON.parse(err._body).message
-                          }
-                        );
-                      }
-                      else {
-                        this.statusCode = -1;
-                        this.errorMessage = "Error! Please remember that: username must be at least 3 characters, password at least 6"
-                      }
+
+    if(!this.registerForm.valid) {
+      this.message.error = "Error! Please remember that: username must be at least 3 characters, password at least 6";      
+    }
+
+    this._registerService.signUp(this.getUser())
+    .subscribe(
+      res => this.message.success= "Registration success!",
+      err => this.message.error = JSON.parse(err._body).message
+    );
   }
 
   private getUser() {
@@ -50,12 +50,6 @@ export class RegisterComponent implements OnInit {
   }
 
   private resetStatus() {
-    this.statusCode = 0;
-    this.errorMessage = "";
-  }
-
-  constructor(private _registerService: RegisterService) { }
-
-  ngOnInit(): void{
+    this.message = new Message("", "");
   }
 }

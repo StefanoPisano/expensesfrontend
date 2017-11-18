@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MonthlyService } from '../monthly/monthly.service';
 import { Expenses } from '../Model/Expenses';
+import { Message } from '../Model/Message';
 
 @Component({
   selector: 'add-expenses',
@@ -10,8 +11,7 @@ import { Expenses } from '../Model/Expenses';
 })
 export class AddExpensesComponent implements OnInit {
 
-  errorMessage:string;
-  successMessage:string;
+  message: Message;
   categories:any[];
 
   addExpensesForm = new FormGroup({
@@ -22,7 +22,9 @@ export class AddExpensesComponent implements OnInit {
     inout: new FormControl('', [Validators.required])  
   });
   
-  constructor(private monthlyService : MonthlyService) { }
+  constructor(private monthlyService : MonthlyService) { 
+    this.message = new Message ("", "");
+  }
 
   ngOnInit() {
     this.getCategories();
@@ -34,7 +36,7 @@ export class AddExpensesComponent implements OnInit {
       res => {
         this.categories = JSON.parse(res._body).map(v => v.value);
       },
-      err => this.errorMessage = "Error while retrieving categories"
+      err => this.message.error = "Error while retrieving categories"
     )
   }
 
@@ -42,16 +44,16 @@ export class AddExpensesComponent implements OnInit {
     this.resetStatus();
      
     if(!this.addExpensesForm.valid) {
-      this.errorMessage = "Invalid expenses, please check your data.";
+      this.message.error = "Invalid expenses, please check your data.";
       return;      
     }
 
     this.monthlyService.saveExpenses(this.getExpenseDto())
     .subscribe(
       res => {
-        this.successMessage = "Saved!"
+        this.message.success = "Saved!"
       },
-      err => this.errorMessage =  JSON.parse(err._body).message
+      err => this.message.error =  JSON.parse(err._body).message
     );            
   }
 
@@ -72,7 +74,6 @@ export class AddExpensesComponent implements OnInit {
   }
 
   private resetStatus() {
-    this.errorMessage = "";
-    this.successMessage = "";
+    this.message = new Message("", "");
   }
 }
