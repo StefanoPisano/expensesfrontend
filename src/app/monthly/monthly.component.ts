@@ -9,24 +9,16 @@ import {Expenses} from '../Model/Expenses';
 @Component({
   selector: 'app-monthly',
   templateUrl: './monthly.component.html',
-  styleUrls: ['./monthly.component.css', '../home/home.component.css', './monthlyadd.component.css'],
+  styleUrls: ['./monthly.component.css', '../home/home.component.css'],
   providers: [MonthlyService, ProfileService, Exception]
 })
 export class MonthlyComponent implements OnInit {
 
   errorMessage : string;
   successMessage ; string;
-  categories: any[];
   listOfExpenses: Expenses[];
   remaining: number;
   budget: number;
-
-  addExpensesForm = new FormGroup({
-    addDescription: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    addPrice: new FormControl('', [Validators.required]),
-    addDate: new FormControl('', [Validators.required]),  
-    addCategory: new FormControl('', Validators.required)  
-  });
 
   constructor(private monthlyService : MonthlyService, private profileService : ProfileService) { 
     this.getExpenses();
@@ -35,13 +27,6 @@ export class MonthlyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.monthlyService.getCategories()
-    .subscribe(
-      res => {
-        this.categories = JSON.parse(res._body).map(v => v.value);
-      },
-      err => console.log(err)
-    )
   }
 
   getBudget() {
@@ -52,12 +37,19 @@ export class MonthlyComponent implements OnInit {
     )
   }
 
-  getWidth() {
-    if(this.remaining >= 0) {
-      return (this.budget - this.remaining)/(this.budget/100) + "%";
+  getColor() {
+    const _val = this.remaining;
+    
+    if(this.remaining <= 0) {
+      return "red";
     }
-    return "100%";
-  }
+  
+    if(_val <= this.budget/2) {
+      return "orange";
+    }
+
+    return "green";
+    }
 
   getExpenses() {
     this.monthlyService.getExpenses()
@@ -65,7 +57,7 @@ export class MonthlyComponent implements OnInit {
       res => {
         this.listOfExpenses = JSON.parse(res._body);
       },
-      err => console.log(err)
+      err => this.errorMessage = "Error while retrieving expenses"
       )
     }
 
@@ -75,38 +67,11 @@ export class MonthlyComponent implements OnInit {
         res => {
           this.remaining = JSON.parse(res._body);
         },
-        err => console.log(err)
+        err => this.errorMessage = "Error while retrieving remaining budget"
       )
     }
 
   updateList() {
     this.getExpenses();
-  }
-
-  addExpenses() {
-    this.resetStatus();
-    
-    const _exp = new Expenses(this.addExpensesForm.get("addDescription").value,
-                              this.addExpensesForm.get("addCategory").value, 
-                              this.addExpensesForm.get("addPrice").value,
-                              this.addExpensesForm.get("addDate").value,
-                              ""
-                            );
-    if(this.addExpensesForm.valid) {
-      this.monthlyService.saveExpenses(_exp)
-      .subscribe(
-        res => {
-          this.successMessage = "Saved!"
-        },
-        err => this.errorMessage =  JSON.parse(err._body).message
-      )
-    } else {
-      this.errorMessage = "Invalid expenses, please check your data.";
-    }             
-  }
-
-  private resetStatus() {
-    this.errorMessage = "";
-    this.successMessage = "";
   }
 }

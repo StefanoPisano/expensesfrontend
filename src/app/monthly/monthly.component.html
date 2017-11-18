@@ -23,15 +23,9 @@
                         </ul>
                     </div>
                     <div class="budget">
-                        <div class="total"><h4>Total Budget: <em>{{budget}}</em></h4></div>
-                        <div class="total"><h4>Remaining Budget: <em>{{remaining}}</em></h4></div>
-                        
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" attr.aria-valuenow="{{remaing}}"
-                            aria-valuemin="0" aria-valuemax="100" [style.width]="getWidth()">
-                                Budget {{remaining}}
-                            </div>
-                        </div>
+                        <div class="total"><span class="stateDescription">Total Budget:</span> <em>{{budget}}</em></div>
+                        <div class="total"><span class="stateDescription">Remaining Budget:</span> <em>{{remaining}}</em></div>
+                        <div class="total"><span class="stateDescription">Status:</span> <span style="font-size: 1.1em" [style.color]="getColor()">&#11044;</span></div>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane active"  id="listOfMonthly">
@@ -39,40 +33,7 @@
                         </div>
                         <div class="tab-pane fade fade" id="addMonthly">
                             <div class="row">
-                                <form role="form" class="form-horizontal" [formGroup]="addExpensesForm">
-                                    <h1>Add Expenses</h1>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="description">Description</label> 
-                                        <div class="col-md-5">
-                                            <input id="description" class="form-control input-md" type="text" formControlName="addDescription" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="howmuch">How Much?</label> 
-                                        <div class="col-md-5">
-                                            <input id="howmuch" class="form-control input-md" type="number" step="0.01" min=0 formControlName="addPrice" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="when">When?</label> 
-                                        <div class="col-md-5">
-                                            <input type="date" class="form-control input-md" formControlName="addDate" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="category">Category</label>
-                                        <div class="col-md-5">
-                                            <select id="category" class="form-control" formControlName="addCategory">
-                                                <option *ngFor="let category of categories" [value]=category>{{category}}</option>
-                                            </select>                                        
-                                        </div>
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col-md-4 col-md-offset-6">
-                                        <button type="button" class="btn btn-info btn-circle btn-lg" (click)="addExpenses()"><i class="glyphicon glyphicon-ok"></i></button>
-                                    </div>
-                                </div>
+                                <add-expenses></add-expenses>
                                 <div class="row" style="margin-top:1%">
                                     <div class="col-md-5 col-md-offset-4">
                                         <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>                    

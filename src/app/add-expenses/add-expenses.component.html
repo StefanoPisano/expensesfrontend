@@ -1,0 +1,52 @@
+<form role="form" class="form-horizontal" [formGroup]="addExpensesForm">
+  <span style="text-align:center"><h1>Add Expenses</h1></span>
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="description">Description</label> 
+      <div class="col-md-5">
+          <input id="description" class="form-control input-md" type="text" formControlName="addDescription" required>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="howmuch">How Much?</label> 
+      <div class="col-md-5">
+          <input id="howmuch" class="form-control input-md" type="number" step="0.01" min=0 formControlName="addPrice" required>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="when">When?</label> 
+      <div class="col-md-5">
+          <input type="date" class="form-control input-md" formControlName="addDate" required>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="category">Category</label>
+      <div class="col-md-5">
+          <select id="category" class="form-control" formControlName="addCategory">
+              <option *ngFor="let category of categories" [value]=category>{{category}}</option>
+          </select>                                        
+      </div>
+  </div>
+  <div class="text-center" style="margin: 1%">      
+      <div class="dlk-radio btn-group">
+          <label class="btn btn-success">
+            <input name="inout" class="form-control" type="radio" value="in" formControlName="inout">
+            <i class="fa fa-check glyphicon glyphicon-plus"></i>
+          </label>
+          <label class="btn btn-danger">
+            <input name="inout" class="form-control" type="radio" value="out" defaultchecked="checked" formControlName="inout">
+            <i class="fa fa-times glyphicon glyphicon-minus"></i>
+          </label>
+      </div>
+    </div>
+</form>
+<div class="row">
+  <div class="text-center">
+      <button type="button" class="btn btn-info btn-circle btn-lg" (click)="addExpenses()"><i class="glyphicon glyphicon-ok"></i></button>
+  </div>
+</div>
+<div class="row" style="margin-top:1%">
+  <div class="col-md-5 col-md-offset-4">
+      <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>                    
+      <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+  </div>
+</div>

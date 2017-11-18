@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MonthlyComponent } from './monthly/monthly.component';
 import { ExpenseComponent } from './expense/expense.component';
+import { AddExpensesComponent } from './add-expenses/add-expenses.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ExpenseComponent } from './expense/expense.component';
     HomeComponent,
     ProfileComponent,
     MonthlyComponent,
-    ExpenseComponent
+    ExpenseComponent,
+    AddExpensesComponent
   ],
   imports: [
     BrowserModule,
