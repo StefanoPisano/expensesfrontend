@@ -17,4 +17,7 @@ export class ExpenseComponent implements OnInit {
     
   }
 
+  getColor() {
+    return this.expense.price < 0 ? "red" : "green";
+  }
 }
