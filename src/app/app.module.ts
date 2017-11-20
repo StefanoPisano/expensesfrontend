@@ -15,6 +15,7 @@ import { MonthlyComponent } from './monthly/monthly.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { AddExpensesComponent } from './add-expenses/add-expenses.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MessagesComponent } from './messages/messages.component';
     MonthlyComponent,
     ExpenseComponent,
     AddExpensesComponent,
-    MessagesComponent
+    MessagesComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

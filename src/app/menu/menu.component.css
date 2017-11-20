@@ -1,0 +1,12 @@
+.ds-btn li{ 
+    list-style:none; 
+    float:right; 
+    padding: .8%
+}
+
+.ds-btn li a small{
+    padding: 0 10%;
+    width:100%; 
+    display:inline-block; 
+    text-align:left;
+}
