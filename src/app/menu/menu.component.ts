@@ -12,13 +12,11 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  user : User;
+  user : User = new User("", "", "");
 
   constructor(private menuService : MenuService, private router: Router) {
     if(localStorage.getItem("jwt")) {
       this.user = this.getUser();
-    } else {
-      this.user = new User("", "", "");
     }
   }
 

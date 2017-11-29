@@ -5,6 +5,7 @@
       <div class="col-md-5">
           <input id="description" class="form-control input-md" type="text" formControlName="addDescription" required>
       </div>
+      
   </div>
   <div class="form-group">
       <label class="col-md-4 control-label" for="howmuch">How Much?</label> 
@@ -15,7 +16,9 @@
   <div class="form-group">
       <label class="col-md-4 control-label" for="when">When?</label> 
       <div class="col-md-5">
-          <input type="date" class="form-control input-md" formControlName="addDate" required>
+          <select class="form-control input-md" formControlName="addDate">
+            <option *ngFor="let day of days" [value]=day>{{day}}</option>
+          </select>
       </div>
   </div>
   <div class="form-group">
@@ -30,11 +33,11 @@
       <div class="dlk-radio btn-group">
           <label class="btn btn-success">
             <input name="inout" class="form-control" type="radio" value="in" formControlName="inout">
-            <i class="fa fa-check glyphicon glyphicon-plus"></i>
+            <i class="fa fa-check glyphicon glyphicon-plus"></i> incomes
           </label>
           <label class="btn btn-danger">
             <input name="inout" class="form-control" type="radio" value="out" defaultchecked="checked" formControlName="inout">
-            <i class="fa fa-times glyphicon glyphicon-minus"></i>
+            <i class="fa fa-times glyphicon glyphicon-minus"></i> expenses
           </label>
       </div>
     </div>
@@ -49,3 +52,6 @@
     <app-messages [message]=message></app-messages>
   </div>
 </div>
+
+
+

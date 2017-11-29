@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private profileService : ProfileService, private router: Router) {  
     this.user = new User("","","");
-    this.message = new Message("", "");
+    this.message = new Message("", ""); 
    }
 
   ngOnInit() {

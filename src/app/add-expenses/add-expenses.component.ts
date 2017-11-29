@@ -13,17 +13,19 @@ export class AddExpensesComponent implements OnInit {
 
   message: Message;
   categories:any[];
+  days:Number[] = [];
 
   addExpensesForm = new FormGroup({
     addDescription: new FormControl('', [Validators.required, Validators.minLength(3)]),
     addPrice: new FormControl('', [Validators.required]),
     addDate: new FormControl('', [Validators.required]),  
     addCategory: new FormControl('', Validators.required),
-    inout: new FormControl('', [Validators.required])  
+    inout: new FormControl('', [Validators.required]),
   });
-  
+
   constructor(private monthlyService : MonthlyService) { 
     this.message = new Message ("", "");
+    this.populateDays();
   }
 
   ngOnInit() {
@@ -50,9 +52,7 @@ export class AddExpensesComponent implements OnInit {
 
     this.monthlyService.saveExpenses(this.getExpenseDto())
     .subscribe(
-      res => {
-        this.message.success = "Saved!"
-      },
+      res => this.message.success = "Saved!",
       err => this.message.error =  JSON.parse(err._body).message
     );            
   }
@@ -61,8 +61,8 @@ export class AddExpensesComponent implements OnInit {
     const inout = this.addExpensesForm.get("inout").value;
     const _description = this.addExpensesForm.get("addDescription").value;
     const _category =  this.addExpensesForm.get("addCategory").value;
-    const _date =  this.addExpensesForm.get("addDate").value;
-
+    var _date =  this.addExpensesForm.get("addDate").value;
+    
     var _price;
     if(inout === "out")  {
       _price = this.addExpensesForm.get("addPrice").value * -1;
@@ -70,10 +70,28 @@ export class AddExpensesComponent implements OnInit {
       _price = this.addExpensesForm.get("addPrice").value;
     }
 
-    return new Expenses(_description, _category, _price, _date, "");
+    return new Expenses(_description, _category, _price, this.getFormattedDate(_date), "");
   }
 
-  private resetStatus() {
+  populateDays() : void {
+    var date = new Date();
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    this.days = Array.apply(null, Array(lastDay.getDate() + 1))
+    .map(function (_, i) {
+        return i;
+    });
+
+    this.days.splice(0,1);
+  }
+
+  private getFormattedDate(date) : Date {
+    const _date = new Date();
+    return new Date(_date.getFullYear(), _date.getMonth(), date);
+
+  }
+
+  private resetStatus() : void {
     this.message = new Message("", "");
   }
 }
