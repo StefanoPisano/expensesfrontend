@@ -28,18 +28,18 @@ export class MenuComponent implements OnInit {
   }
 
   getUser() : User {
-    this.menuService.getUser()
+    this.menuService
+    .getUser()
     .subscribe(
-      res => {
-        this.user = JSON.parse(res._body)
-      },
+      res => this.user = JSON.parse(res._body),
       err => console.log(err)
     );
     return this.user;
   }
 
   logout() : void {
-    this.menuService.logout()
+    this.menuService
+    .logout()
     .subscribe(
       res => this.router.navigate(['']),
       err => console.log(err)  

@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
     this.resetStatus();
 
     const user = this.getUser();
-    this._loginService.signIn(user)
+    this._loginService
+    .signIn(user)
     .subscribe(
       res => {
         this.message.success = "Login Success!";
@@ -53,5 +54,4 @@ export class LoginComponent implements OnInit {
   private resetStatus() {
     this.message = new Message("", "");
   }
-
 }

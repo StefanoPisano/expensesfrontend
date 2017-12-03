@@ -14,7 +14,8 @@ export class LoginService {
     let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     const _url = '/api/login';
 
-    return this.http.post(_url, loginRequest, {headers: headers})
+    return this.http
+    .post(_url, loginRequest, {headers: headers})
     .map( res => res )
     .catch(this.exception.handleError);
   }

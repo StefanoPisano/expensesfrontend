@@ -53,21 +53,19 @@ export class MonthlyComponent implements OnInit {
     }
 
   getExpenses() {
-    this.monthlyService.getExpenses()
+    this.monthlyService
+    .getExpenses()
     .subscribe(
-      res => {
-        this.listOfExpenses = JSON.parse(res._body);
-      },
+      res => this.listOfExpenses = JSON.parse(res._body),
       err => this.message.error = "Error while retrieving expenses"
       )
     }
 
     getRemaining() {
-      this.monthlyService.getRemaining()
+      this.monthlyService
+      .getRemaining()
       .subscribe(
-        res => {
-          this.remaining = JSON.parse(res._body);
-        },
+        res => this.remaining = JSON.parse(res._body),
         err => this.message.error = "Error while retrieving remaining budget"
       )
     }

@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
 
   signUp() {
     this.resetStatus();
+    
     if(!this.registerForm.valid) {
       this.message.error = "Error! Please remember that: username must be at least 3 characters, password at least 6";      
       return;

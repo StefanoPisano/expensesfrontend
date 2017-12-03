@@ -8,11 +8,11 @@ export class RegisterService {
 
   constructor(private http:Http, private exception:Exception) {   }
 
-
   signUp(data) : Observable<any>{
     const _url = '/api/user/signup/';
 
-    return this.http.post(_url, data)
+    return this.http
+    .post(_url, data)
       .map(res => res)
       .catch(this.exception.handleError);
   }

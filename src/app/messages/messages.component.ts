@@ -16,16 +16,10 @@ export class MessagesComponent implements OnInit {
   }
 
   showError() {
-    if(this.message.error) {
-      return "block";
-    }
-    return "none";
+    return this.message.error ? "block" : "none";
   }
 
   showSuccess() {
-    if(this.message.success) {
-      return "block";
-    }
-    return "none";
+    return this.message.success ? "block" : "success";
   }
 }

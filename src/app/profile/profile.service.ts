@@ -26,13 +26,15 @@ export class ProfileService {
   }
 
   updateUser(url, data) : Observable<any> {    
-    return this.http.patch(url, data, {headers: this.prepareHeaders()})
+    return this.http
+    .patch(url, data, {headers: this.prepareHeaders()})
     .map( res => res)
     .catch(this.exception.handleError);
   }
 
   updatBudget(url, data) : Observable<any> {    
-    return this.http.post(url, data, {headers: this.prepareHeaders()})
+    return this.http
+    .post(url, data, {headers: this.prepareHeaders()})
     .map( res => res)
     .catch(this.exception.handleError);
   }

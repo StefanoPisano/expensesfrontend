@@ -12,7 +12,8 @@ export class MonthlyService {
   saveExpenses(data) : Observable<any> {
     const _url = '/api/monthly';
 
-    return this.http.post(_url, data, {headers: this.prepareHeaders()})
+    return this.http
+    .post(_url, data, {headers: this.prepareHeaders()})
     .map( res => res )
     .catch(this.exception.handleError);
   }
@@ -20,7 +21,8 @@ export class MonthlyService {
   getExpenses() {
     const _url = '/api/monthly';
 
-    return this.http.get(_url, {headers: this.prepareHeaders()})
+    return this.http
+    .get(_url, {headers: this.prepareHeaders()})
     .map(res => res)
     .catch(this.exception.handleError);
   }
@@ -28,7 +30,8 @@ export class MonthlyService {
   getRemaining() {
     const _url = '/api/budget/remaining';
     
-    return this.http.get(_url, {headers: this.prepareHeaders()})
+    return this.http
+    .get(_url, {headers: this.prepareHeaders()})
     .map(res => res)
     .catch(this.exception.handleError);
   }
@@ -36,7 +39,8 @@ export class MonthlyService {
   getCategories() : Observable<any> {
     const _url = '/api/monthly/categories';
 
-    return this.http.get(_url, {headers: this.prepareHeaders()})
+    return this.http
+    .get(_url, {headers: this.prepareHeaders()})
     .map( res => res )
     .catch(this.exception.handleError);
   }

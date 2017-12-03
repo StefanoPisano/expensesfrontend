@@ -35,9 +35,7 @@ export class AddExpensesComponent implements OnInit {
   getCategories() {
     this.monthlyService.getCategories()
     .subscribe(
-      res => {
-        this.categories = JSON.parse(res._body).map(v => v.value);
-      },
+      res => this.categories = JSON.parse(res._body).map(v => v.value),
       err => this.message.error = "Error while retrieving categories"
     )
   }
@@ -62,13 +60,9 @@ export class AddExpensesComponent implements OnInit {
     const _description = this.addExpensesForm.get("addDescription").value;
     const _category =  this.addExpensesForm.get("addCategory").value;
     var _date =  this.addExpensesForm.get("addDate").value;
+    var _price = this.addExpensesForm.get("addPrice").value;
     
-    var _price;
-    if(inout === "out")  {
-      _price = this.addExpensesForm.get("addPrice").value * -1;
-    } else {
-      _price = this.addExpensesForm.get("addPrice").value;
-    }
+    _price = inout == "out=" ? _price * -1 : _price;
 
     return new Expenses(_description, _category, _price, this.getFormattedDate(_date), "");
   }
@@ -77,7 +71,8 @@ export class AddExpensesComponent implements OnInit {
     var date = new Date();
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
-    this.days = Array.apply(null, Array(lastDay.getDate() + 1))
+    this.days = Array
+    .apply(null, Array(lastDay.getDate() + 1))
     .map(function (_, i) {
         return i;
     });

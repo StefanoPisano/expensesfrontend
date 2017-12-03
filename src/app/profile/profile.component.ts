@@ -70,7 +70,8 @@ export class ProfileComponent implements OnInit {
       const _url = '/api/user/changeUsername';
       const tUser = this.getTempUser(this.changeUsernameForm, "usernameChange");
       
-      this.profileService.updateUser(_url, tUser)
+      this.profileService
+      .updateUser(_url, tUser)
       .subscribe(
         res => this.router.navigate([""]),
         err => this.message.error = JSON.parse(err._body).message
@@ -81,21 +82,22 @@ export class ProfileComponent implements OnInit {
     this.resetStatus();
 
     if(!this.changeEmailForm.valid) {
-      this.message.error = "Invalid Email!"      
+      this.message.error = "Invalid Email!";      
       return;      
     }
 
     const _url = '/api/user/changeEmail';  
     const tUser = this.getTempUser(this.changeEmailForm, "emailChange");
 
-    this.profileService.updateUser(_url, tUser)
+    this.profileService
+    .updateUser(_url, tUser)
     .subscribe(
       res => {
-        this.user.email = tUser.email
-        this.message.success = "Email changed!"
+        this.user.email = tUser.email;
+        this.message.success = "Email changed!";
       },
       err => this.message.error = JSON.parse(err._body).message
-    )
+    );
   }
 
   changePassword() {
@@ -114,18 +116,20 @@ export class ProfileComponent implements OnInit {
     const _url = '/api/user/changePassword';    
     const tUser = this.getTempUser(this.changePasswordForm, "passwordChange");
     
-    this.profileService.updateUser(_url, tUser)
+    this.profileService
+    .updateUser(_url, tUser)
     .subscribe(
       res => {
         this.user.password = tUser.password;
-        this.message.success = "Password changed!"
+        this.message.success = "Password changed!";
       },
       err => this.message.error = JSON.parse(err._body).message
     )
   }
 
   getBudget() {
-    this.profileService.loadBudget()
+    this.profileService
+    .loadBudget()
     .subscribe(
       res => this.budget = JSON.parse(res._body).total,
       err => this.message.error = "Error while retrieving budget"
