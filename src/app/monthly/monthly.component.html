@@ -1,3 +1,8 @@
+<div [style.display]="showWarning()">
+    <div class="alert alert-danger">
+        {{warningMessage}}
+    </div>
+</div>
 <app-navigation></app-navigation>
 <app-menu></app-menu>
 <div class="container">
@@ -16,7 +21,7 @@
                             </li>
     
                             <li>
-                                <a href="#addMonthly" data-toggle="tab" title="addMonthly">
+                                <a href="#addMonthly" data-toggle="tab" title="addMonthly" [style.display]="isShowable()">
                                     <span class="round-tabs one">
                                         <i class="glyphicon glyphicon-credit-card"></i>
                                     </span>

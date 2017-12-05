@@ -19,12 +19,13 @@ export class MonthlyComponent implements OnInit {
   listOfExpenses: Expenses[];
   remaining: number;
   budget: number;
+  warningMessage:String;
 
   constructor(private monthlyService : MonthlyService, private profileService : ProfileService) { 
     this.message = new Message ("", "");
     this.getExpenses();
     this.getBudget();
-    this.getRemaining();
+    this.getRemaining();  
   }
 
   ngOnInit() {
@@ -33,9 +34,12 @@ export class MonthlyComponent implements OnInit {
   getBudget() {
     this.profileService.loadBudget()
     .subscribe(
-      res => this.budget = JSON.parse(res._body).total,
+      res => {
+        this.budget = JSON.parse(res._body).total;
+        this.warningMessage = !this.budget ? "You have to set a budget if you want to use this software" : "";
+      },
       err => this.message.error = "Error while retrieving budget"
-    )
+    );    
   }
 
   getColor() {
@@ -68,5 +72,13 @@ export class MonthlyComponent implements OnInit {
         res => this.remaining = JSON.parse(res._body),
         err => this.message.error = "Error while retrieving remaining budget"
       )
+    }
+
+    isShowable() : String {      
+      return this.budget ? "block" : "none";
+    }
+
+    showWarning() : String {      
+      return this.warningMessage ? "block" : "none";
     }
 }

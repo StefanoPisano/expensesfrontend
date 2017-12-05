@@ -20,6 +20,6 @@ export class MessagesComponent implements OnInit {
   }
 
   showSuccess() {
-    return this.message.success ? "block" : "success";
+    return this.message.success ? "block" : "none";
   }
 }

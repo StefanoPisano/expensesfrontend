@@ -39,6 +39,15 @@ export class ProfileService {
     .catch(this.exception.handleError);
   }
 
+  getRemaining() {
+    const _url = '/api/budget/remaining';
+    
+    return this.http
+    .get(_url, {headers: this.prepareHeaders()})
+    .map(res => res)
+    .catch(this.exception.handleError);
+  }
+
   prepareHeaders(){
     return new Headers({
         'Content-Type': 'application/json',

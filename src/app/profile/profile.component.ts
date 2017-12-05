@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   message : Message;
   user : User;
   budget : number;
+  remaining : number;
 
   changeUsernameForm = new FormGroup({
     usernameChange: new FormControl('', [Validators.required, Validators.minLength(3)])
@@ -47,6 +48,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.loadData();
     this.getBudget();
+    this.getRemaining();
   }
 
   loadData() {
@@ -133,6 +135,15 @@ export class ProfileComponent implements OnInit {
     .subscribe(
       res => this.budget = JSON.parse(res._body).total,
       err => this.message.error = "Error while retrieving budget"
+    )
+  }
+
+  getRemaining() {
+    this.profileService
+    .getRemaining()
+    .subscribe(
+      res => this.remaining = JSON.parse(res._body),
+      err => this.message.error = "Error while retrieving remaining budget"
     )
   }
 

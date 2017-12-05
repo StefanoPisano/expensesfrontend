@@ -423,8 +423,8 @@
   .budget::after {
     content: "current budget";
   }
-  .following::after {
-    content: "empty";
+  .remaining::after {
+    content: "remaining budget";
   }
   .image {
     width: 240px;
