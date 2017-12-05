@@ -16,6 +16,7 @@ import { ExpenseComponent } from './expense/expense.component';
 import { AddExpensesComponent } from './add-expenses/add-expenses.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MenuComponent } from './menu/menu.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MenuComponent } from './menu/menu.component';
     ExpenseComponent,
     AddExpensesComponent,
     MessagesComponent,
-    MenuComponent
+    MenuComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

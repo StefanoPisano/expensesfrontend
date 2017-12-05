@@ -62,7 +62,7 @@ export class AddExpensesComponent implements OnInit {
     var _date =  this.addExpensesForm.get("addDate").value;
     var _price = this.addExpensesForm.get("addPrice").value;
     
-    _price = inout == "out=" ? _price * -1 : _price;
+    _price = inout == "out" ? _price * -1 : _price;
 
     return new Expenses(_description, _category, _price, this.getFormattedDate(_date), "");
   }

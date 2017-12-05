@@ -13,7 +13,7 @@ export class RegisterService {
 
     return this.http
     .post(_url, data)
-      .map(res => res)
-      .catch(this.exception.handleError);
+    .map(res => res)
+    .catch(this.exception.handleError);
   }
 }
