@@ -17,6 +17,8 @@ import { AddExpensesComponent } from './add-expenses/add-expenses.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { DesireComponent } from './desire/desire.component';
+import { DesireElementComponent } from './desire-element/desire-element.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     AddExpensesComponent,
     MessagesComponent,
     MenuComponent,
-    NavigationComponent
+    NavigationComponent,
+    DesireComponent,
+    DesireElementComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import {HomeComponent} from './home/home.component';
 import {SecurityService} from './security/security.service';
 import {ProfileComponent} from './profile/profile.component';
 import {MonthlyComponent} from './monthly/monthly.component';
+import { DesireComponent } from './desire/desire.component';
 
 const appRoutes: Routes = [
   { 
@@ -28,6 +29,11 @@ const appRoutes: Routes = [
   {
     path: 'monthly',
     component: MonthlyComponent,
+    canActivate: [SecurityService]
+  },
+  {
+    path: 'desire',
+    component: DesireComponent,
     canActivate: [SecurityService]
   }
 ];
