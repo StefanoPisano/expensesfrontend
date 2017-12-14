@@ -11,6 +11,7 @@ section {
 .container {
     margin-left:3%;
     width: 95%;
+    padding: .5%
 }
 
 .date {
@@ -18,7 +19,6 @@ section {
     font-style: italic
 }
 
-.footerExpense {
-    border-top: 1px solid rgb(236, 236, 236);
-    padding: 1%;
+.btn {
+    margin-top: 40%
 }

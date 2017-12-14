@@ -21,6 +21,7 @@ export class DesireComponent implements OnInit {
   }
 
   getDesire() {
+    this.listOfDesire = [];
     this.desireService.getDesire()
     .subscribe(
       res => this.listOfDesire = JSON.parse(res._body),
