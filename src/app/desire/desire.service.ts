@@ -17,6 +17,14 @@ export class DesireService {
     .catch(this.exception.handleError);    
   }
 
+  createDesire(data) : Observable<any> {
+    const _url = "api/desire";
+
+    return this.http.post(_url, data, {headers: this.prepareHeaders()})
+    .map(res => res)
+    .catch(this.exception.handleError);
+  }
+
   prepareHeaders(){
     return new Headers({
         'Content-Type': 'application/json',

@@ -19,6 +19,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DesireComponent } from './desire/desire.component';
 import { DesireElementComponent } from './desire-element/desire-element.component';
+import { AddDesireComponent } from './add-desire/add-desire.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DesireElementComponent } from './desire-element/desire-element.componen
     MenuComponent,
     NavigationComponent,
     DesireComponent,
-    DesireElementComponent
+    DesireElementComponent,
+    AddDesireComponent
   ],
   imports: [
     BrowserModule,

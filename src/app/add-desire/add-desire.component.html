@@ -1,0 +1,37 @@
+<form role="form" class="form-horizontal" [formGroup]="addDesireForm">
+  <span style="text-align:center"><h1>Add Desire</h1></span>
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="description">Description</label> 
+      <div class="col-md-5">
+          <input id="description" class="form-control input-md" type="text" formControlName="desireDescription" required>
+      </div>
+      
+  </div>
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="howmuch">Price?</label> 
+      <div class="col-md-5">
+          <input id="howmuch" class="form-control input-md" type="number" step="0.01" min=0 formControlName="desirePrice" required>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="category">Category</label>
+      <div class="col-md-5">
+        <select id="category" class="form-control" formControlName="addCategory">
+            <option *ngFor="let category of categories" [value]=category>{{category}}</option>
+        </select>                                      
+      </div>
+  </div>
+</form>
+<div class="row">
+  <div class="text-center">
+      <button type="button" class="btn btn-info btn-circle btn-lg" (click)="addDesire()"><i class="glyphicon glyphicon-ok"></i></button>
+  </div>
+</div>
+<div class="row" style="margin-top:1%">
+  <div class="col-md-5 col-md-offset-4">
+    <app-messages [message]=message></app-messages>
+  </div>
+</div>
+
+
+
