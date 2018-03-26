@@ -2,12 +2,6 @@ h2 {
     font-weight: normal
 }
 
-section {
-    background: #F5F5F5;
-    border: 1px solid #EEEEEE;
-    opacity: .8;
-    border-bottom: 1px solid #ddd !important
-}
 .container {
     margin-left:3%;
     width: 95%;

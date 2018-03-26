@@ -9,18 +9,14 @@ section {
 }
 #myTab {
     margin-left: 15%
-    
 }
 .board{
     margin: 60px auto;
     height: 500px;
     background: #fff;
-    /*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
 }
 .board .nav-tabs {
     position: relative;
-    /* border-bottom: 0; */
-    /* width: 80%; */
     margin: 40px auto;
     margin-bottom: 0;
     box-sizing: border-box;
@@ -46,7 +42,6 @@ p.narrow{
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     color: #555555;
     cursor: default;
-    /* background-color: #ffffff; */
     border: 0;
     border-bottom-color: transparent;
 }

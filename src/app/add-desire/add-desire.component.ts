@@ -24,16 +24,18 @@ export class AddDesireComponent implements OnInit {
   });
 
   constructor(private desireService : DesireService, private monthlyService : MonthlyService) { 
-    this.message = new Message ("", "");
+    this.resetStatus();
   }
 
   ngOnInit() {
     this.getCategories();
   }
 
-  addDesire():void {
+  initialize(): void {
     this.resetStatus();
+  }
 
+  addDesire():void {
     const dto = this.getDesireDto();
 
     if(!this.addDesireForm.valid) {
@@ -50,14 +52,8 @@ export class AddDesireComponent implements OnInit {
 
   private getDesireDto() : Desire{
     const _description = this.addDesireForm.get("desireDescription").value;
-    var _category =  this.addDesireForm.get("desireCategory").value;
-    
-    if(!_category) {
-      this.addDesireForm.get("desireCategory").setValue('Other');
-      _category = 'Other';
-    }
-
-    var _price = this.addDesireForm.get("desirePrice").value;
+    const _category =  this.addDesireForm.get("desireCategory").value;
+    const _price = this.addDesireForm.get("desirePrice").value;
 
     return new Desire(null, _description, _category, _price);
   }
@@ -72,5 +68,8 @@ export class AddDesireComponent implements OnInit {
   
   private resetStatus() : void {
     this.message = new Message("", "");
+    this.addDesireForm.get("desireCategory").setValue('Food');
+    this.addDesireForm.get("desireDescription").setValue('');
+    this.addDesireForm.get("desirePrice").setValue('');
   }
 }

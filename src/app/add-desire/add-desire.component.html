@@ -1,5 +1,5 @@
 <form role="form" class="form-horizontal" [formGroup]="addDesireForm">
-  <span style="text-align:center"><h1>Add Desire</h1></span>
+  <span style="text-align:center"><h1>What do you want to <em>buy</em> ?</h1></span>
   <div class="form-group">
       <label class="col-md-4 control-label" for="description">Description</label> 
       <div class="col-md-5">
@@ -16,7 +16,7 @@
   <div class="form-group">
       <label class="col-md-4 control-label" for="category">Category</label>
       <div class="col-md-5">
-        <select id="category" class="form-control" formControlName="addCategory">
+        <select id="category" class="form-control" formControlName="desireCategory">
             <option *ngFor="let category of categories" [value]=category>{{category}}</option>
         </select>                                      
       </div>
