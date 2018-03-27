@@ -64,7 +64,7 @@ export class AddExpensesComponent implements OnInit {
     
     _price = inout == "out" ? _price * -1 : _price;
 
-    return new Expenses(_description, _category, _price, this.getFormattedDate(_date), "");
+    return new Expenses(null, _description, _category, _price, this.getFormattedDate(_date), "");
   }
 
   populateDays() : void {

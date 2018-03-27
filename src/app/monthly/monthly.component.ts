@@ -65,6 +65,11 @@ export class MonthlyComponent implements OnInit {
       )
     }
 
+
+    pippo() {
+      console.log("sono pippi");
+    }
+
     getRemaining() {
       this.monthlyService
       .getRemaining()
