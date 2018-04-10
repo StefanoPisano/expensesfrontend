@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  user : User = new User("", "", "");
+  user : User = new User(null, null, null);
 
   constructor(private menuService : MenuService, private router: Router) {
     if(localStorage.getItem("jwt")) {
@@ -21,6 +21,10 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger;
+    if(localStorage.getItem("jwt")) {
+      this.user = this.getUser();
+    }
   }
 
   showLogout() : String {

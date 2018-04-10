@@ -27,6 +27,14 @@ export class MonthlyService {
     .catch(this.exception.handleError);
   }
 
+  removeExpense(id:Number) : Observable<any> {
+    const _url = "api/monthly/" + id;
+
+    return this.http.delete(_url, {headers: this.prepareHeaders()})
+    .map( res => res )
+    .catch(this.exception.handleError);    
+  }
+
   getRemaining() {
     const _url = '/api/budget/remaining';
     

@@ -65,9 +65,16 @@ export class MonthlyComponent implements OnInit {
       )
     }
 
-
-    pippo() {
-      console.log("sono pippi");
+    removeExpense(expense: Expenses) {
+      this.monthlyService
+      .removeExpense(expense.idExpenses)
+      .subscribe(
+        res => {
+          this.listOfExpenses = this.listOfExpenses.filter(obj => obj !== expense);
+          this.getRemaining();
+        },
+        err => this.message.error = 'Error while removing expense.'
+      )
     }
 
     getRemaining() {

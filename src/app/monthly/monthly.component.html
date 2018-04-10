@@ -36,7 +36,16 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane active"  id="listOfMonthly">
-                        <app-expense *ngFor="let expense of listOfExpenses" [expense]=expense></app-expense>                                
+                        <div *ngFor="let expense of listOfExpenses" >
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <app-expense [expense]=expense></app-expense>  
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-primary" (click)="removeExpense(expense)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>                                             
                     </div>
                     <div class="tab-pane fade fade" id="addMonthly">
                         <div class="row">
