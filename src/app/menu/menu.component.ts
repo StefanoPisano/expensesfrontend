@@ -21,7 +21,6 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     if(localStorage.getItem("jwt")) {
       this.user = this.getUser();
     }

@@ -25,6 +25,22 @@ export class DesireService {
     .catch(this.exception.handleError);
   }
 
+  moveDesire(id) : Observable<any> {
+    const _url = "api/desire/" + id ;
+    
+    return this.http.patch(_url, {headers: this.prepareHeaders()})
+    .map( res => res )
+    .catch(this.exception.handleError);    
+  }
+
+  removeDesire(id:Number) : Observable<any> {
+    const _url = "api/desire/" + id;
+
+    return this.http.delete(_url, {headers: this.prepareHeaders()})
+    .map( res => res )
+    .catch(this.exception.handleError);    
+  }
+
   prepareHeaders(){
     return new Headers({
         'Content-Type': 'application/json',

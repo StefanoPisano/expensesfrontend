@@ -26,7 +26,15 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane active"  id="listOfDesire">
-                        <app-desire-element *ngFor="let desire of listOfDesire" [desire]=desire></app-desire-element>
+                        <div *ngFor="let desire of listOfDesire">
+                            <div class="col-md-10">
+                                <app-desire-element  [desire]=desire></app-desire-element>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success" (click)="moveDesire(desire)"><i class="glyphicon glyphicon-ok"></i></button>
+                                <button class="btn btn-danger" (click)="removeDesire(desire)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-pane fade fade" id="addDesire">
