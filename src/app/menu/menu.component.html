@@ -1,8 +1,7 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+
 <div class="row" [style.display]="showLogout()">
-  <ul class="ds-btn">
-       <li>
-           <a class="btn btn-lg btn-primary" (click) = "logout()">
-           <i class="glyphicon glyphicon-user pull-left"></i> <small>Logout {{user.username}}</small></a> 
-       </li>
-  </ul>  
+  <button class="material-button material-button-toggle" type="button"  (click) = "logout()">
+    <span class="fa fa-sign-out"></span>            
+  </button> 
 </div>

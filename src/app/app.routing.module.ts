@@ -7,6 +7,7 @@ import {SecurityService} from './security/security.service';
 import {ProfileComponent} from './profile/profile.component';
 import {MonthlyComponent} from './monthly/monthly.component';
 import { DesireComponent } from './desire/desire.component';
+import { HistoryComponent } from './history/history.component';
 
 const appRoutes: Routes = [
   { 
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
   },
   { 
     path: 'register', 
-    component: RegisterComponent },
+    component: RegisterComponent 
+  },
   { 
     path: 'home', 
     component: HomeComponent, 
@@ -34,6 +36,11 @@ const appRoutes: Routes = [
   {
     path: 'desire',
     component: DesireComponent,
+    canActivate: [SecurityService]
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
     canActivate: [SecurityService]
   }
 ];

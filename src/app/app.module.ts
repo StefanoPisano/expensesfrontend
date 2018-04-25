@@ -20,6 +20,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { DesireComponent } from './desire/desire.component';
 import { DesireElementComponent } from './desire-element/desire-element.component';
 import { AddDesireComponent } from './add-desire/add-desire.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AddDesireComponent } from './add-desire/add-desire.component';
     NavigationComponent,
     DesireComponent,
     DesireElementComponent,
-    AddDesireComponent
+    AddDesireComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
