@@ -28,7 +28,7 @@ export class DesireService {
   moveDesire(id) : Observable<any> {
     const _url = "api/desire/" + id ;
     
-    return this.http.patch(_url, {headers: this.prepareHeaders()})
+    return this.http.post(_url, {headers: this.prepareHeaders()})
     .map( res => res )
     .catch(this.exception.handleError);    
   }

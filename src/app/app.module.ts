@@ -21,6 +21,7 @@ import { DesireComponent } from './desire/desire.component';
 import { DesireElementComponent } from './desire-element/desire-element.component';
 import { AddDesireComponent } from './add-desire/add-desire.component';
 import { HistoryComponent } from './history/history.component';
+import { DataTableModule } from 'angular-4-data-table/src/index';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HistoryComponent } from './history/history.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    DataTableModule
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
