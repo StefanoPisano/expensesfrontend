@@ -18,7 +18,6 @@ import { DataTableResource } from 'angular-4-data-table';
 export class MonthlyComponent implements OnInit {
 
   message : Message;
-  listOfExpenses: Expenses[];
   remaining: number;
   budget: number;
   warningMessage:String;
@@ -28,7 +27,6 @@ export class MonthlyComponent implements OnInit {
 
   constructor(private monthlyService : MonthlyService, private profileService : ProfileService) { 
     this.message = new Message ("", "");
-    this.getExpenses();
     this.getBudget();
     this.getRemaining();  
   }
@@ -75,21 +73,12 @@ export class MonthlyComponent implements OnInit {
     return "green";
     }
 
-  getExpenses() {
-    this.monthlyService
-    .getExpenses()
-    .subscribe(
-      res => this.listOfExpenses = JSON.parse(res._body),
-      err => this.message.error = "Error while retrieving expenses"
-      )
-    }
-
     removeExpense(expense: Expenses) {
       this.monthlyService
       .removeExpense(expense.idExpenses)
       .subscribe(
         res => {
-          this.listOfExpenses = this.listOfExpenses.filter(obj => obj !== expense);
+          this.items = this.items.filter(obj => obj !== expense);
           this.getRemaining();
         },
         err => this.message.error = 'Error while removing expense.'

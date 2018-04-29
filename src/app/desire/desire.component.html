@@ -26,6 +26,19 @@
                 [header]="'Category'"
                 [sortable]="true">
             </data-table-column>
+            <data-table-column
+                width="80px">
+                <ng-template #dataTableCell let-item="item">
+                    <button (click)="moveDesire(item)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-chevron-right"></span>
+                    </button>
+                </ng-template>
+            </data-table-column>
+            <data-table-column
+            width="80px">
+                <ng-template #dataTableCell let-item="item">
+                    <button (click)="removeDesire(item)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+                </ng-template>
+            </data-table-column>
         </data-table>
     </div>
 </div>

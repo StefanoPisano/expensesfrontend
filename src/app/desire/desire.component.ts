@@ -14,7 +14,6 @@ import { DataTableResource } from 'angular-4-data-table';
 })
 export class DesireComponent implements OnInit {
 
-  listOfDesire : Desire[];
   message: Message;
   itemResource : DataTableResource<{}>;
   items = [];
@@ -27,7 +26,6 @@ export class DesireComponent implements OnInit {
   }
 
   reloadItems(params) {
-    this.listOfDesire = [];
     this.desireService.getDesire()
     .subscribe(
       res => {
@@ -42,7 +40,7 @@ export class DesireComponent implements OnInit {
   moveDesire(desire: Desire) {
     this.desireService.moveDesire(desire.id)
     .subscribe(
-      res => this.listOfDesire = this.listOfDesire.filter(obj => obj !== desire),
+      res => this.items = this.items.filter(obj => obj !== desire),
       err => console.log(err)
     );
   }
@@ -51,7 +49,7 @@ export class DesireComponent implements OnInit {
     this.desireService
     .removeDesire(desire.id)
     .subscribe(
-      res => this.listOfDesire = this.listOfDesire.filter(obj => obj !== desire),
+      res => this.items = this.items.filter(obj => obj !== desire),
       err => this.message.error = 'Error while removing expense.'
     )
   }

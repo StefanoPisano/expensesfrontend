@@ -51,6 +51,11 @@
                             </span>
                         </ng-template>
                     </data-table-column>
+                    <data-table-column>
+                        <ng-template #dataTableCell let-item="item">
+                            <button (click)="removeExpense(item)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+                        </ng-template>
+                    </data-table-column>
                 </data-table>
             </div>
             <div class="tab-pane fade fade" id="addMonthly">
