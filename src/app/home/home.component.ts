@@ -12,4 +12,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  isVisible() {
+    if(localStorage.getItem("jwt") != null){
+      return "block";
+    } else {
+      return "none";
+    }
+  }
 }

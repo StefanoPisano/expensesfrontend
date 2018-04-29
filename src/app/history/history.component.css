@@ -1,0 +1,16 @@
+td, tr, th {
+    border: none !important;
+    padding: 2% !important;
+}
+
+td {
+    background: #fff;
+}
+
+thead {
+    background: #2196F3
+}
+
+.data-table-header h4{
+    font-size: 4em !important
+}

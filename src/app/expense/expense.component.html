@@ -1,5 +1,4 @@
-<section>
-    <div class="row" class="container">
+    <div class="row">
         <div class="col-md-9">
             <h2>{{expense.description}}</h2>
         </div>
@@ -7,9 +6,8 @@
             <h3 [style.color]="getColor()">{{expense.price}}</h3>
         </div>
     </div>
-    <div class="row" class="container">
-        <div class="col-md-12" class="footerExpense">
+    <div class="row">
+        <div class="col-md-12">
             <kbd>#{{expense.category}}</kbd>  <span class="date">on <samp>{{expense.stringDate}}</samp></span>
         </div>
     </div>
-</section>

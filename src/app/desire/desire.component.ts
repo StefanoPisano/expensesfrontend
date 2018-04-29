@@ -1,32 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DesireService } from './desire.service';
 import { Exception } from '../exception/Exception';
 import { Desire } from '../Model/Desire';
 import {Message} from '../Model/Message';
+import { DataTableResource } from 'angular-4-data-table';
 
 @Component({
   selector: 'app-desire',
   templateUrl: './desire.component.html',
   styleUrls: ['./desire.component.css', '../home/home.component.css'],
-  providers: [DesireService, Exception]
+  providers: [DesireService, Exception],
+  encapsulation: ViewEncapsulation.None
 })
 export class DesireComponent implements OnInit {
 
   listOfDesire : Desire[];
   message: Message;
+  itemResource : DataTableResource<{}>;
+  items = [];
+  itemCount = 0;
 
   constructor(private desireService : DesireService, private exception : Exception) { 
-    this.getDesire();
   }
 
   ngOnInit() {
   }
 
-  getDesire() {
+  reloadItems(params) {
     this.listOfDesire = [];
     this.desireService.getDesire()
     .subscribe(
-      res => this.listOfDesire = JSON.parse(res._body),
+      res => {
+        this.itemResource = new DataTableResource(JSON.parse(res._body));
+        this.itemResource.query(params).then(items => this.items = items);
+        this.itemResource.count().then(count => this.itemCount = count);
+      },
       err => console.log(err)
     )
   }

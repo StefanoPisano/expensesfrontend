@@ -1,149 +1,150 @@
-<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:300,400|Yellowtail" rel="stylesheet"><!-- PAGE STUFF -->
 <app-navigation></app-navigation>
 <app-menu></app-menu>
 
-<div class="rela-block container">
-  <div class="rela-block profile-card">
-    <div id="profile_pic"><img class="profile-pic" src="assets/user_default.png"/></div>
-    <div class="rela-block profile-name-container">
-        <div class="rela-block user-name" id="username">{{user.username}}</div>
-        <div class="rela-block user-desc" id="user_description">{{user.email}}</div>
-    </div>
-    <div class="rela-block profile-card-stats">
-        <div class="floated profile-stat works" id="num_works">--<br></div>
-        <div class="floated profile-stat budget" id="budgetLabel">{{budget}}<br></div>
-        <div class="floated profile-stat remaining" id="remainingLabel">{{remaining}}<br></div>
-    </div>
-  </div>
-  <section>
-    <div class="container">
-        <div class="row">
-            <div class="board">
-                <div class="board-inner">
-                  <ul class="nav nav-tabs" id="myTab">
-                    <li class="active">
-                      <a href="#profile" data-toggle="tab" title="profile">
-                        <span class="round-tabs two">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="content">
+        <div class="card">
+          <div class="firstinfo">
+            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mrvanz/128.jpg" />
+            <div class="profileinfo">
+              <h1>{{user.username}}</h1>
+              <h3>Email:</h3>
+              <span>{{user.email}}</span>
+              <h3>Budget:</h3>
+              <span>{{budget}}</span>
+              <h3>Remaining:</h3>
+              <span>{{remaining}}</span>
+            </div>
+          </div>
+        </div>
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane fade in active" id="home">
+            <div class="content_accordion">
+              <div class="panel-group" id="accordion">
+
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#username">Change your
+                        <span style="color:#f48260;">username!</span>
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="username" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <div class="input-group">
+                        <span class="input-group-addon">
                           <i class="glyphicon glyphicon-user"></i>
-                        </span> 
-                      </a>
-                    </li>
+                        </span>
+                        <form id="change-username-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changeUsernameForm">
+                          <input id="usernameChange" type="text" class="form-control" name="username" placeholder="New Username" formControlName="usernameChange">
+                        </form>
+                      </div>
 
-                    <li>
-                      <a href="#email" data-toggle="tab" title="email">
-                      <span class="round-tabs one">
-                        <i class="glyphicon glyphicon-envelope"></i>
-                      </span> 
+                      <p class="text-center">
+                        <a (click)="changeUsername()" class="btn btn-success btn-outline-rounded green"> change it please!
+                          <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#email">Change your
+                        <span style="color:#f48260;">email!</span>
                       </a>
-                    </li>
+                    </h4>
+                  </div>
+                  <div id="email" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-envelope"></i>
+                        </span>
+                        <form id="change-email-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changeEmailForm">
+                          <input id="emailChange" type="text" class="form-control" name="email" placeholder="New Email" formControlName="emailChange">
+                        </form>
+                      </div>
 
-                    <li>
-                      <a href="#password" data-toggle="tab" title="password">
-                        <span class="round-tabs three">
+                      <p class="text-center">
+                        <a (click)="changeEmail()" class="btn btn-success btn-outline-rounded green"> change it please!
+                          <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#password">Change your
+                        <span style="color:#f48260;">password!</span>
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="password" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="input-group">
+                        <span class="input-group-addon">
                           <i class="glyphicon glyphicon-lock"></i>
                         </span>
-                      </a>
-                    </li>
-
-                    <li>
-                        <a href="#budget" data-toggle="tab" title="budget">
-                          <span class="round-tabs three">
-                            <i class="glyphicon glyphicon-euro"></i>
-                          </span>
-                        </a>
-                      </li>
-                  <li>  
-                </ul>
-              </div>
-
-              <div class="tab-content">
-                <div class="tab-pane fade in active" id="profile">
-                    <h3 class="head text-center">Change your <span style="color:#f48260;">username!</span></h3>
-                    <div class="alert alert-info">
-                        <strong>Keep in mind:</strong> after changing it you will be redirected to login page.
+                        <form id="change-password-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changePasswordForm">
+                          <input id="passwordChange" type="password" class="form-control" name="passwordChange" placeholder="New Password" formControlName="passwordChange">
+                        </form>
                       </div>
-                        <div class="input-group" style="margin-left:35%">
-                            <span class="input-group-addon">
-                              <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            <form id="change-username-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changeUsernameForm">
-                              <input style="width:40%" id="usernameChange" type="text" class="form-control" name="username" placeholder="New Username" formControlName="usernameChange">
-                            </form>
-                          </div>
-                    
-                    <p class="text-center">
-                      <a (click)="changeUsername()" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
-                    </p>
-                </div>
-                
-                
-                <div class="tab-pane fade" id="email">
-                  <h3 class="head text-center">Change your <span style="color:#f48260;">email!</span></h3>
-                  <div class="input-group" style="margin-left:35%">
-                    <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-user"></i>
-                    </span>
-                    <form id="change-email-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changeEmailForm">
-                      <input style="width:40%" id="emailChange" type="text" class="form-control" name="email" placeholder="New Email" formControlName="emailChange">
-                    </form>
-                  </div>
-              
-                  <p class="text-center">
-                    <a (click)="changeEmail()" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
-                  </p>
-                </div>
 
-                <div class="tab-pane fade" id="password">
-                    <h3 class="head text-center">Change your <span style="color:#f48260;">password!</span></h3>
-                    <div class="input-group" style="margin-left:35%">
-                      <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-lock"></i>
-                      </span>
-                      <form id="change-password-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changePasswordForm">                          
-                        <input style="width:40%" id="passwordChange" type="password" class="form-control" name="passwordChange" placeholder="New Password" formControlName="passwordChange">
-                      </form>
+                      <div class="input-group" style="margin-top:1%">
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <form id="change-password-form" action="#" method="post" role="form" style="display: block;" [formGroup]="repeatPasswordForm">
+                          <input id="passwordRepeat" type="password" class="form-control" name="passwordRepeat" placeholder="Repeat Password" formControlName="repeatPassword">
+                        </form>
+                      </div>
+
+                      <p class="text-center">
+                        <a (click)="changePassword()" class="btn btn-success btn-outline-rounded green"> change it please!
+                          <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
+                        </a>
+                      </p>
                     </div>
-                
-                    <div class="input-group" style="margin-left:35%; margin-top:1%">
-                      <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-lock"></i>
-                      </span>
-                      <form id="change-password-form" action="#" method="post" role="form" style="display: block;" [formGroup]="repeatPasswordForm">                                                    
-                        <input style="width:40%" id="passwordRepeat" type="password" class="form-control" name="passwordRepeat" placeholder="Repeat Password" formControlName="repeatPassword">
-                      </form>
-                    </div>
-
-                    <p class="text-center">
-                      <a (click)="changePassword()" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
-                    </p>
-                </div>
-
-                <div class="tab-pane fade" id="budget">
-                    <h3 class="head text-center">Set your <span style="color:#f48260;">budget</span> for the current month!</h3>
-                
-                    <div class="input-group" style="margin-left:35%; margin-top:1%">
-                      <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-lock"></i>
-                      </span>
-                      <form id="change-budget-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changeBudgetForm">                                                    
-                        <input style="width:40%" id="budgetChange" type="number" step="1" min=0 class="form-control" name="budgetChange" placeholder="Budget" formControlName="budgetChange">
-                      </form>
-                    </div>
-
-                    <p class="text-center">
-                      <a (click)="changeBudget()" class="btn btn-success btn-outline-rounded green"> change it please! <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
-                    </p>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-12">
-                    <app-messages [message]=message></app-messages>                    
                   </div>
                 </div>
-                <div class="clearfix"></div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#budget">Set your
+                        <span style="color:#f48260;">budget</span> for the current month!</a>
+                    </h4>
+                  </div>
+                  <div id="budget" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                      <div class="input-group" style="margin-top:1%">
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-euro"></i>
+                        </span>
+                        <form id="change-budget-form" action="#" method="post" role="form" style="display: block;" [formGroup]="changeBudgetForm">
+                          <input id="budgetChange" type="number" step="1" min=0 class="form-control" name="budgetChange" placeholder="Budget" formControlName="budgetChange">
+                        </form>
+                      </div>
+
+                      <p class="text-center">
+                        <a (click)="changeBudget()" class="btn btn-success btn-outline-rounded green"> change it please!
+                          <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
-    </section>
-</div> 
+    </div>
+  </div>

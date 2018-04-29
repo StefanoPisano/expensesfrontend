@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {Expenses} from '../Model/Expenses';
 import { HistoryService } from './history.service';
 import { Message } from '../Model/Message';
@@ -9,7 +9,8 @@ import { DataTableResource } from 'angular-4-data-table';
   selector: 'app-history',
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css'],
-  providers:[HistoryService, Exception] 
+  providers:[HistoryService, Exception] ,
+  encapsulation: ViewEncapsulation.None
 })
 export class HistoryComponent implements OnInit {
 

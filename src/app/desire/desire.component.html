@@ -1,55 +1,31 @@
 <app-navigation></app-navigation>
 <app-menu></app-menu>
+
 <div class="container">
-    <section>
-        <div class="row">
-            <div class="board">
-                <div class="board-inner">
-                    <ul class="nav nav-tabs" id="myTab">
-                        <div class="liner"></div>
-                        <li class="active">
-                            <a href="#listOfDesire" data-toggle="tab" title="listOfDesire" (click)="getDesire();">
-                            <span class="round-tabs two">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#addDesire" data-toggle="tab" title="addDesire">
-                                <span class="round-tabs one">
-                                    <i class="glyphicon glyphicon-credit-card"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-pane active"  id="listOfDesire">
-                        <div *ngFor="let desire of listOfDesire">
-                            <div class="col-md-10">
-                                <app-desire-element  [desire]=desire></app-desire-element>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-success" (click)="moveDesire(desire)"><i class="glyphicon glyphicon-ok"></i></button>
-                                <button class="btn btn-danger" (click)="removeDesire(desire)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade fade" id="addDesire">
-                        <div class="row">
-                            <div class="row" style="margin-top:1%">
-                                <div class="col-md-12">
-                                    <add-desire></add-desire>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <div class="row">       
+            <data-table id="desire-grid"
+            headerTitle="Desire"
+            [items]="items"
+            [itemCount]="itemCount"
+            (reload)="reloadItems($event)"
+            >
+            <data-table-column
+                [property]="'description'"
+                [header]="'Description'"
+                [sortable]="true"
+                [resizable]="true">
+            </data-table-column>
+            <data-table-column
+                property="price"
+                header="Amount"
+                width="150px"
+                [sortable]="true">
+            </data-table-column>
+            <data-table-column
+                [property]="'category'"
+                [header]="'Category'"
+                [sortable]="true">
+            </data-table-column>
+        </data-table>
+    </div>
 </div>

@@ -17,7 +17,32 @@
 }
 
 .total {
-    width: 95%;
+    width: 90%;
     text-align:right;
     font-size: 1.3em
+}
+
+.board-inner {
+    height: 10px
+}
+
+.nav-tabs {
+    border: none
+}
+
+td, tr, th {
+    border: none !important;
+    padding: 2% !important;
+}
+
+td {
+    background: #fff;
+}
+
+thead {
+    background: #2196F3 !important
+}
+
+.data-table-header h4{
+    font-size: 4em !important
 }

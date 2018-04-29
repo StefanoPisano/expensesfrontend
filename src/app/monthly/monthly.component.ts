@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Exception } from '../exception/Exception';
 import {MonthlyService} from './monthly.service';
 import {ProfileService} from '../profile/profile.service';
 import {Expenses} from '../Model/Expenses';
 import { Message } from '../Model/Message';
+import { DataTableResource } from 'angular-4-data-table';
 
 
 @Component({
   selector: 'app-monthly',
   templateUrl: './monthly.component.html',
   styleUrls: ['./monthly.component.css', '../home/home.component.css'],
-  providers: [MonthlyService, ProfileService, Exception]
+  providers: [MonthlyService, ProfileService, Exception],
+  encapsulation: ViewEncapsulation.None
 })
 export class MonthlyComponent implements OnInit {
 
@@ -20,6 +22,9 @@ export class MonthlyComponent implements OnInit {
   remaining: number;
   budget: number;
   warningMessage:String;
+  itemResource : DataTableResource<{}>;
+  items = [];
+  itemCount = 0;
 
   constructor(private monthlyService : MonthlyService, private profileService : ProfileService) { 
     this.message = new Message ("", "");
@@ -40,6 +45,20 @@ export class MonthlyComponent implements OnInit {
       },
       err => this.message.error = "Error while retrieving budget"
     );    
+  }
+
+  reloadItems(params) {
+    this.monthlyService
+    .getExpenses()
+    .subscribe(
+      res => {
+        this.itemResource = new DataTableResource(JSON.parse(res._body));
+        this.itemResource.query(params).then(items => this.items = items);
+        this.itemResource.count().then(count => this.itemCount = count);
+      },
+      err => this.message.error = "Error while retrieving expenses"
+      )
+
   }
 
   getColor() {

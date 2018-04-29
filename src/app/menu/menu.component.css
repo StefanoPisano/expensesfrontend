@@ -1,13 +1,5 @@
-.material-button-anim {
-    position: relative;
-    padding: 127px 15px 27px;
-    text-align: center;
-    max-width: 320px;
-    margin: 0 auto 20px;
-  }
-  
   .material-button {
-      margin:1%;
+      margin:.3%;
       float: right;
       position: relative;
       top: 0;
@@ -16,13 +8,13 @@
       color: #fff;
       background: #2C98DE;
       border: none;
-      border-radius: 50%;
+      border-radius: 3%;
       box-shadow: 0 3px 6px rgba(0,0,0,.275);
       outline: none;
   }
   .material-button-toggle {
       z-index: 3;
-      width: 50px;
+      width: 120px;
       height: 50px;
   }
   
