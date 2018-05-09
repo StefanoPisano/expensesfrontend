@@ -17,4 +17,4 @@ RUN npm install
 COPY . /usr/src/app
 
 # Serve the app
-CMD ["npm", "start"]
+CMD ["npm", "run", "run-docker"]
