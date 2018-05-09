@@ -2,48 +2,27 @@
 <app-menu></app-menu>
 
 <div class="container">
-    <div class="row">    
-        <data-table id="history-grid"
-            headerTitle="Expenses History"
-            [items]="items"
-            [itemCount]="itemCount"
-            (reload)="reloadItems($event)"
-        >
-            <data-table-column
-                [property]="'description'"
-                [header]="'Description'"
-                [sortable]="true"
-                [resizable]="true">
-            </data-table-column>
-            <data-table-column
-                [property]="'expensesDate'"
-                [header]="'Date'"
-                [sortable]="true">
-                <ng-template #dataTableCell let-item="item">
-                    <span>{{item.expensesDate | date:'yyyy-MM-dd'}}</span>
-                </ng-template>
-            </data-table-column>
-            <data-table-column
-                property="price"
-                header="Amount"
-                width="150px"
-                [sortable]="true">
-            </data-table-column>
-            <data-table-column
-                [property]="'category'"
-                [header]="'Category'"
-                [sortable]="true">
-            </data-table-column>
-            <data-table-column
-                [header]="'Incomes/Expenses'"
-                [resizable]="true">
-                <ng-template #dataTableCell let-item="item">
-                    <span style="color: grey">
-                    <span class="glyphicon glyphicon-ok" *ngIf="item.price > 0"></span>
-                    <span class="glyphicon glyphicon-remove" *ngIf="item.price < 0"></span>
-                    </span>
-                </ng-template>
-            </data-table-column>
-        </data-table>
-    </div>
+  <div class="row">
+    <data-table id="history-grid" headerTitle="Expenses History" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+      <data-table-column [property]="'description'" [header]="'Description'" [sortable]="true" [resizable]="true">
+      </data-table-column>
+      <data-table-column [property]="'expensesDate'" [header]="'Date'" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+          <span>{{item.expensesDate | date:'yyyy-MM-dd'}}</span>
+        </ng-template>
+      </data-table-column>
+      <data-table-column property="price" header="Amount" width="150px" [sortable]="true">
+      </data-table-column>
+      <data-table-column [property]="'category'" [header]="'Category'" [sortable]="true">
+      </data-table-column>
+      <data-table-column [header]="'Incomes/Expenses'" [resizable]="true">
+        <ng-template #dataTableCell let-item="item">
+          <span style="color: grey">
+            <span style="color:greenyellow" class="glyphicon glyphicon-triangle-left" *ngIf="item.price > 0"></span>
+            <span style="color:red" class="glyphicon glyphicon-triangle-right" *ngIf="item.price < 0"></span>
+          </span>
+        </ng-template>
+      </data-table-column>
+    </data-table>
+  </div>
 </div>

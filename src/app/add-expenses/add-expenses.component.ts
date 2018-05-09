@@ -88,5 +88,7 @@ export class AddExpensesComponent implements OnInit {
 
   private resetStatus() : void {
     this.message = new Message("", "");
+    this.addExpensesForm.get("addCategory").setValue('Food');
+
   }
 }

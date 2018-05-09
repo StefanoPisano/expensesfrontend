@@ -1,72 +1,65 @@
-
-<app-navigation></app-navigation>
+<app-navigation>
+</app-navigation>
 <app-menu></app-menu>
 
 <div [style.display]="showWarning()">
-    <div class="alert alert-danger">
-        {{warningMessage}}
-    </div>
+  <div class="alert alert-danger">
+    {{warningMessage}}
+  </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="tab-content">
-                <data-table id="monthly-grid"
-                    headerTitle="Monthly Expenses"
-                    [items]="items"
-                    [itemCount]="itemCount"
-                    (reload)="reloadItems($event)"
-                    >
-                    <data-table-column
-                        [property]="'description'"
-                        [header]="'Description'"
-                        [sortable]="true"
-                        [resizable]="true">
-                    </data-table-column>
-                    <data-table-column
-                        [property]="'expensesDate'"
-                        [header]="'Date'"
-                        [sortable]="true">
-                        <ng-template #dataTableCell let-item="item">
-                            <span>{{item.expensesDate | date:'yyyy-MM-dd'}}</span>
-                        </ng-template>
-                    </data-table-column>
-                    <data-table-column
-                        property="price"
-                        header="Amount"
-                        width="150px"
-                        [sortable]="true">
-                    </data-table-column>
-                    <data-table-column
-                        [property]="'category'"
-                        [header]="'Category'"
-                        [sortable]="true">
-                    </data-table-column>
-                    <data-table-column
-                        [header]="'Incomes/Expenses'"
-                        [resizable]="true">
-                        <ng-template #dataTableCell let-item="item">
-                            <span style="color: grey">
-                            <span class="glyphicon glyphicon-ok" *ngIf="item.price > 0"></span>
-                            <span class="glyphicon glyphicon-remove" *ngIf="item.price < 0"></span>
-                            </span>
-                        </ng-template>
-                    </data-table-column>
-                    <data-table-column>
-                        <ng-template #dataTableCell let-item="item">
-                            <button (click)="removeExpense(item)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-                        </ng-template>
-                    </data-table-column>
-                </data-table>
-            </div>
-            <div class="tab-pane fade fade" id="addMonthly">
-                <div class="row">
-                    <add-expenses></add-expenses>
-                    <div class="row" style="margin-top:1%">
-                        <div class="col-md-5 col-md-offset-1">
-                            <app-messages [message]=message></app-messages>
-                        </div>
-                    </div>
-                </div>
-            </div>  
+  <div class="row">
+    <div class="tab-content">
+      <data-table id="monthly-grid" headerTitle="Monthly Expenses" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+        <data-table-column [property]="'description'" [header]="'Description'" [sortable]="true" [resizable]="true">
+        </data-table-column>
+        <data-table-column [property]="'expensesDate'" [header]="'Date'" [sortable]="true">
+          <ng-template #dataTableCell let-item="item">
+            <span>{{item.expensesDate | date:'yyyy-MM-dd'}}</span>
+          </ng-template>
+        </data-table-column>
+        <data-table-column property="price" header="Amount" width="150px" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'category'" [header]="'Category'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [header]="'Incomes/Expenses'" [resizable]="true">
+          <ng-template #dataTableCell let-item="item">
+            <span style="color: grey">
+              <span style="color:greenyellow" class="glyphicon glyphicon-triangle-left" *ngIf="item.price > 0"></span>
+              <span style="color:red" class="glyphicon glyphicon-triangle-right" *ngIf="item.price < 0"></span>
+            </span>
+          </ng-template>
+        </data-table-column>
+        <data-table-column>
+          <ng-template #dataTableCell let-item="item">
+            <button (click)="removeExpense(item)" class="btn btn-sm btn-default">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </ng-template>
+        </data-table-column>
+      </data-table>
     </div>
+  </div>
+  <div class="row">
+    <div class="col col-md-2 col-md-offset-5 text-center">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true"
+  style="display:hidden">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <add-expenses></add-expenses>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

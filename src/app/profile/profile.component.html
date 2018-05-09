@@ -7,16 +7,14 @@
       <div class="content">
         <div class="card">
           <div class="firstinfo">
-            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mrvanz/128.jpg" />
-            <div class="profileinfo">
-              <h1>{{user.username}}</h1>
-              <h3>Email:</h3>
-              <span>{{user.email}}</span>
-              <h3>Budget:</h3>
-              <span>{{budget}}</span>
-              <h3>Remaining:</h3>
-              <span>{{remaining}}</span>
-            </div>
+              <h2><span class="label label-success">{{user.username}}</span></h2>
+          </div>
+        <div class="firstinfo">
+            <h5><em>{{user.email}}</em></h5>
+
+          </div>
+          <div class="firstinfo">
+              <h2><span class="label label-default">Budget: {{budget}}</span></h2>
           </div>
         </div>
         <div id="myTabContent" class="tab-content">

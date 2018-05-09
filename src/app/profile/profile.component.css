@@ -1,5 +1,5 @@
-.content_accordion{
-  margin: 10% 20%;
+.content_accordion {
+  margin: 0 20%;
 }
 
 .content_accordion .input-group {
@@ -7,30 +7,27 @@
   margin-left: 25%
 }
 
-
-
 /*
 * PROFILE HEADER 
 */
 
 @import "https://fonts.googleapis.com/css?family=Open+Sans:300,400";
-body, .badgescard, .firstinfo {
+body,
+.badgescard,
+.firstinfo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
-.content {
-  position: relative;
-  animation: animatop 0.9s cubic-bezier(0.425, 1.14, 0.47, 1.125) forwards;
-}
-
 .card {
-  width: 100%;
+  margin: 0 20%;
   min-height: 100px;
   padding: 20px;
   border-radius: 3px;
@@ -38,15 +35,6 @@ body, .badgescard, .firstinfo {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
-}
-.card:after {
-  content: '';
-  display: block;
-  width: 190px;
-  height: 300px;
-  background: cadetblue;
-  position: absolute;
-  animation: rotatemagic 0.75s cubic-bezier(0.425, 1.04, 0.47, 1.105) 1s both;
 }
 
 .badgescard {
@@ -61,6 +49,7 @@ body, .badgescard, .firstinfo {
   bottom: 10px;
   animation: animainfos 0.5s cubic-bezier(0.425, 1.04, 0.47, 1.105) 0.75s forwards;
 }
+
 .badgescard span {
   font-size: 1.6em;
   margin: 0px 6px;
@@ -72,22 +61,27 @@ body, .badgescard, .firstinfo {
   z-index: 2;
   position: relative;
 }
+
 .firstinfo img {
   border-radius: 50%;
   width: 120px;
   height: 120px;
 }
+
 .firstinfo .profileinfo {
   padding: 0px 20px;
 }
+
 .firstinfo .profileinfo h1 {
   font-size: 1.8em;
 }
+
 .firstinfo .profileinfo h3 {
   font-size: 1.2em;
   color: #009688;
   font-style: italic;
 }
+
 .firstinfo .profileinfo p.bio {
   padding: 10px 0px;
   color: #5A5A5A;
@@ -105,6 +99,7 @@ body, .badgescard, .firstinfo {
     bottom: 0px;
   }
 }
+
 @keyframes animainfos {
   0% {
     bottom: 10px;
@@ -113,6 +108,7 @@ body, .badgescard, .firstinfo {
     bottom: -42px;
   }
 }
+
 @keyframes rotatemagic {
   0% {
     opacity: 0;

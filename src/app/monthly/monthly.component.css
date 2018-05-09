@@ -37,6 +37,7 @@ td, tr, th {
 
 td {
     background: #fff;
+    font-size: 1.3em !important
 }
 
 thead {
