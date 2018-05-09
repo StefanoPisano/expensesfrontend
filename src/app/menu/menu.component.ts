@@ -12,32 +12,24 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  user : User = new User(null, null, null);
+  path : String = "home";
 
   constructor(private menuService : MenuService, private router: Router) {
-    if(localStorage.getItem("jwt")) {
-      this.user = this.getUser();
-    }
   }
 
   ngOnInit() {
-    if(localStorage.getItem("jwt")) {
-      this.user = this.getUser();
-    }
   }
 
   showLogout() : String {
     return localStorage.getItem("jwt") ? "block" : "none";
   }
 
-  getUser() : User {
-    this.menuService
-    .getUser()
-    .subscribe(
-      res => this.user = JSON.parse(res._body),
-      err => console.log(err)
-    );
-    return this.user;
+  showHome() : String {
+    return this.router.url != "/home" ? "block" : "none";
+  }
+
+  go() {
+    this.router.navigate([this.path]);
   }
 
   logout() : void {

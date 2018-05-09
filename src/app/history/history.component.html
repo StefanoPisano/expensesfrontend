@@ -1,9 +1,9 @@
-<app-navigation></app-navigation>
 <app-menu></app-menu>
 
+<div class="pageTitle">History</div>
 <div class="container">
   <div class="row">
-    <data-table id="history-grid" headerTitle="Expenses History" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+    <data-table id="history-grid" headerTitle="" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
       <data-table-column [property]="'description'" [header]="'Description'" [sortable]="true" [resizable]="true">
       </data-table-column>
       <data-table-column [property]="'expensesDate'" [header]="'Date'" [sortable]="true">

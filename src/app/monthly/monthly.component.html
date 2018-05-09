@@ -1,5 +1,3 @@
-<app-navigation>
-</app-navigation>
 <app-menu></app-menu>
 
 <div [style.display]="showWarning()">
@@ -7,10 +5,12 @@
     {{warningMessage}}
   </div>
 </div>
+
+<div class="pageTitle">Monthly Expenses</div>
 <div class="container">
   <div class="row">
     <div class="tab-content">
-      <data-table id="monthly-grid" headerTitle="Monthly Expenses" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+      <data-table id="monthly-grid" headerTitle="" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
         <data-table-column [property]="'description'" [header]="'Description'" [sortable]="true" [resizable]="true">
         </data-table-column>
         <data-table-column [property]="'expensesDate'" [header]="'Date'" [sortable]="true">

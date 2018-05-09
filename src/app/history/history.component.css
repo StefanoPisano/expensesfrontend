@@ -1,6 +1,10 @@
 td, tr, th {
-    border: none !important;
+    border: none!important;
     padding: 2% !important;
+}
+
+tr {
+    border-bottom: 1px solid #E0E0E0 !important;
 }
 
 td {
@@ -9,7 +13,8 @@ td {
 }
 
 thead {
-    background: #2196F3
+    background: #000;
+    color: #fff
 }
 
 .data-table-header h4{

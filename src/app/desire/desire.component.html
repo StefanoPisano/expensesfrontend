@@ -1,9 +1,9 @@
-<app-navigation></app-navigation>
 <app-menu></app-menu>
 
+<div class="pageTitle">Desire</div>
 <div class="container">
   <div class="row">
-    <data-table id="desire-grid" headerTitle="Desire" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+    <data-table id="desire-grid" headerTitle="" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
       <data-table-column [property]="'description'" [header]="'Description'" [sortable]="true" [resizable]="true">
       </data-table-column>
       <data-table-column property="price" header="Amount" width="150px" [sortable]="true">

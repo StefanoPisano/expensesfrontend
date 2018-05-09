@@ -13,8 +13,13 @@ td {
     font-size: 1.3em !important
 }
 
+tr {
+    border-bottom: 1px solid #E0E0E0 !important;
+}
+
 thead {
-    background: #2196F3
+    background: #000;
+    color: #fff
 }
 
 .data-table-header h4{
