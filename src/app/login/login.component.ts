@@ -3,7 +3,7 @@ import {LoginService} from './login.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../Model/User';
 import { Exception } from '../exception/Exception';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import { Message } from '../Model/Message';
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private _loginService: LoginService, private router: Router) {
-    this.message = new Message("", "");
+    this.message = new Message('', '');
   }
 
   ngOnInit() {
@@ -36,10 +36,10 @@ export class LoginComponent implements OnInit {
     .signIn(user)
     .subscribe(
       res => {
-        this.message.success = "Login Success!";
+        this.message.success = 'Login Success!';
         localStorage.setItem('jwt', res.headers.get('x-auth-token'));
         this.router.navigate(['home']);
-      }, 
+      },
       err => this.message.error = JSON.parse(err._body).message
     );
   }
@@ -52,6 +52,6 @@ export class LoginComponent implements OnInit {
   }
 
   private resetStatus() {
-    this.message = new Message("", "");
+    this.message = new Message('', '');
   }
 }
