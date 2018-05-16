@@ -1,0 +1,54 @@
+.board {
+    min-height: 500px;
+    height: 100% !important
+}
+
+.tab-pane {
+    padding-top: 1% !important
+}
+
+.budget {
+    margin: 2% 0;
+}
+
+.stateDescription {
+    width: 88%;
+    float: left;
+}
+
+.total {
+    width: 90%;
+    text-align:right;
+    font-size: 1.3em
+}
+
+.board-inner {
+    height: 10px
+}
+
+.nav-tabs {
+    border: none
+}
+
+td, tr, th {
+    border: none !important;
+    padding: 2% !important;
+}
+
+td {
+    background: #fff;
+    font-size: 1.3em !important
+}
+
+tr {
+    border-bottom: 1px solid #E0E0E0 !important;
+}
+
+thead {
+    background: black;
+    color: white !important
+}
+
+.data-table-header h4{
+    font-size: 4em !important
+}

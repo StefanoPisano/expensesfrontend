@@ -21,6 +21,9 @@ import { DesireElementComponent } from './desire-element/desire-element.componen
 import { AddDesireComponent } from './add-desire/add-desire.component';
 import { HistoryComponent } from './history/history.component';
 import { DataTableModule } from 'angular-4-data-table/src/index';
+import { ScheduledComponent } from './scheduled/scheduled.component';
+import {ScheduledService} from './scheduled/scheduled.service';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { DataTableModule } from 'angular-4-data-table/src/index';
     DesireComponent,
     DesireElementComponent,
     AddDesireComponent,
-    HistoryComponent
+    HistoryComponent,
+    ScheduledComponent
   ],
   imports: [
     BrowserModule,

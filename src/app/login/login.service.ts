@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Exception } from '../exception/Exception';
-import "rxjs/Rx";
+import 'rxjs/Rx';
 
 @Injectable()
 export class LoginService {
 
-  constructor(private http:Http, private exception:Exception) { }
+  constructor(private http: Http, private exception: Exception) { }
 
-  signIn(data) : Observable<any>{
-    let loginRequest = JSON.stringify({username: data.username, password: data.password});
-    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
+  signIn(data): Observable<any> {
+    const loginRequest = JSON.stringify({username: data.username, password: data.password});
+    const headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     const _url = '/api/login';
 
     return this.http

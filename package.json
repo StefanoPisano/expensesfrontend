@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.config.json",
-    "run-docker" : "ng serve -H 0.0.0.0 --proxy-config proxy.config.docker.json",
+    "run-docker": "ng serve -H 0.0.0.0 --proxy-config proxy.config.docker.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +24,7 @@
     "@angular/router": "^4.2.4",
     "angular-4-data-table": "^0.4.6",
     "core-js": "^2.4.1",
+    "firacode": "^1.205.0",
     "ng2-datepicker-bootstrap": "^1.0.0",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"

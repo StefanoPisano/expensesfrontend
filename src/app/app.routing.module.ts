@@ -8,6 +8,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {MonthlyComponent} from './monthly/monthly.component';
 import { DesireComponent } from './desire/desire.component';
 import { HistoryComponent } from './history/history.component';
+import { ScheduledComponent } from './scheduled/scheduled.component';
 
 const appRoutes: Routes = [
   { 
@@ -41,6 +42,11 @@ const appRoutes: Routes = [
   {
     path: 'history',
     component: HistoryComponent,
+    canActivate: [SecurityService]
+  },
+  {
+    path: 'scheduled',
+    component: ScheduledComponent,
     canActivate: [SecurityService]
   }
 ];

@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Exception } from '../exception/Exception';
-import "rxjs/Rx";
+import 'rxjs/Rx';
 
 @Injectable()
 export class MenuService {
 
-  constructor(private http:Http, private exception:Exception) { }
+  constructor(private http: Http, private exception: Exception) { }
 
-  logout() : Observable<any> {   
-    var _url = "/api/user";
-    
+  logout() : Observable<any> {
+    const _url = '/api/user';
+
     return this.http
     .delete(_url, {headers: this.prepareHeaders()})
     .map( res => res)

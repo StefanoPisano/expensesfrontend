@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="dash-box dash-box-color-1">
         <div class="dash-box-icon">
           <i class="glyphicon glyphicon-user"></i>
@@ -19,25 +19,26 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="dash-box dash-box-color-2">
-        <div class="dash-box-icon">
-          <i class="glyphicon glyphicon-euro"></i>
-        </div>
-        <div class="dash-box-body">
-          <span class="dash-box-count">Monthly</span>
-          <span class="dash-box-title">Expenses of the current month</span>
-        </div>
-
-        <div class="dash-box-action">
-          <a routerLink="../monthly" class="btn btn-default">check monthly expenses
-            <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
-          </a>
-        </div>
-      </div>
-    </div>
+    
   </div>
   <div class="row">
+      <div class="col-md-6">
+          <div class="dash-box dash-box-color-2">
+            <div class="dash-box-icon">
+              <i class="glyphicon glyphicon-euro"></i>
+            </div>
+            <div class="dash-box-body">
+              <span class="dash-box-count">Monthly</span>
+              <span class="dash-box-title">Expenses of the current month</span>
+            </div>
+    
+            <div class="dash-box-action">
+              <a routerLink="../monthly" class="btn btn-default">check monthly expenses
+                <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
+              </a>
+            </div>
+          </div>
+        </div>
     <div class="col-md-6">
       <div class="dash-box dash-box-color-3">
         <div class="dash-box-icon">
@@ -55,22 +56,41 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="dash-box dash-box-color-1">
-        <div class="dash-box-icon">
-          <i class="glyphicon glyphicon-cloud"></i>
+  </div>
+  <div class="row">
+      <div class="col-md-6">
+          <div class="dash-box dash-box-color-1">
+            <div class="dash-box-icon">
+              <i class="glyphicon glyphicon-time"></i>
+            </div>
+            <div class="dash-box-body">
+              <span class="dash-box-count">Schedule</span>
+              <span class="dash-box-title">Do you want to schedule expenses?</span>
+            </div>
+    
+            <div class="dash-box-action">
+              <a routerLink="../scheduled" class="btn btn-default">check your scheduled expenses
+                <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="dash-box-body">
-          <span class="dash-box-count">History</span>
-          <span class="dash-box-title">Where do you spend more?</span>
+      <div class="col-md-6">
+          <div class="dash-box dash-box-color-1">
+            <div class="dash-box-icon">
+              <i class="glyphicon glyphicon-cloud"></i>
+            </div>
+            <div class="dash-box-body">
+              <span class="dash-box-count">History</span>
+              <span class="dash-box-title">Where do you spend more?</span>
+            </div>
+    
+            <div class="dash-box-action">
+              <a routerLink="../history" class="btn btn-default">check your history
+                <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
+              </a>
+            </div>
+          </div>
         </div>
-
-        <div class="dash-box-action">
-          <a routerLink="../history" class="btn btn-default">check your history
-            <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
-          </a>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

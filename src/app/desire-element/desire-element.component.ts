@@ -10,7 +10,7 @@ import { DesireComponent } from '../desire/desire.component';
 })
 export class DesireElementComponent implements OnInit {
 
-  @Input() desire : Desire;
+  @Input() desire: Desire;
 
   constructor() { }
 

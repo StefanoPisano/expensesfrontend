@@ -4,13 +4,13 @@ import { CanActivate, Router } from '@angular/router';
 @Injectable()
 export class SecurityService implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   canActivate() {
-    if(localStorage.getItem("jwt") != null){
+    if (localStorage.getItem('jwt') != null) {
       return true;
     } else {
       this.router.navigate(['/']);

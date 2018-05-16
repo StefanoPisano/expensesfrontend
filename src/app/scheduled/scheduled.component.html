@@ -1,0 +1,53 @@
+<app-menu></app-menu>
+
+<div class="pageTitle">Schedule</div>
+<div class="container">
+  <div class="row">
+    <data-table id="schedule-grid" headerTitle="" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+      <data-table-column [property]="'name'" [header]="'Name'" [sortable]="true" [resizable]="true">
+      </data-table-column>
+      <data-table-column property="price" header="Amount" width="150px" [sortable]="true">
+      </data-table-column>
+      <data-table-column [property]="'category'" [header]="'Category'" [sortable]="true">
+      </data-table-column>
+      <data-table-column [property]="'fromDate'" [header]="'From'" [sortable]="true">
+          <ng-template #dataTableCell let-item="item">
+            <span>{{item.fromDate | date:'yyyy-MM-dd'}}</span>
+          </ng-template>
+        </data-table-column>
+        <data-table-column [property]="'toDate'" [header]="'To'" [sortable]="true">
+            <ng-template #dataTableCell let-item="item">
+              <span>{{item.toDate | date:'yyyy-MM-dd'}}</span>
+            </ng-template>
+          </data-table-column>
+      <data-table-column width="80px">
+        <ng-template #dataTableCell let-item="item">
+          <button (click)="removeScheduled(item)" class="btn btn-sm btn-default">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </ng-template>
+      </data-table-column>
+    </data-table>
+  </div>
+  <div class="row">
+    <div class="col col-md-2 col-md-offset-5 text-center">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true" style="display:hidden">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <add-schedule></add-schedule>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

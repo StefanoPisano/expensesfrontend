@@ -15,7 +15,7 @@ import { Message } from '../Model/Message';
 export class AddDesireComponent implements OnInit {
 
   message: Message;
-  categories:any[];
+  categories: any[];
 
   addDesireForm = new FormGroup({
     desireDescription: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -23,7 +23,7 @@ export class AddDesireComponent implements OnInit {
     desireCategory: new FormControl('', Validators.required),
   });
 
-  constructor(private desireService : DesireService, private monthlyService : MonthlyService) { 
+  constructor(private desireService: DesireService, private monthlyService : MonthlyService) {
     this.resetStatus();
   }
 
@@ -35,25 +35,25 @@ export class AddDesireComponent implements OnInit {
     this.resetStatus();
   }
 
-  addDesire():void {
+  addDesire(): void {
     const dto = this.getDesireDto();
 
     if(!this.addDesireForm.valid) {
-      this.message.error = "Invalid desire, please check your data.";
-      return;      
+      this.message.error = 'Invalid desire, please check your data.';
+      return;
     }
 
     this.desireService.createDesire(dto)
     .subscribe(
       res => this.message.success = 'Desire inserted successfully',
-      err => this.message.error = "Error while inserting desire"
-    )
+      err => this.message.error = 'Error while inserting desire'
+    );
   }
 
-  private getDesireDto() : Desire{
-    const _description = this.addDesireForm.get("desireDescription").value;
-    const _category =  this.addDesireForm.get("desireCategory").value;
-    const _price = this.addDesireForm.get("desirePrice").value;
+  private getDesireDto(): Desire{
+    const _description = this.addDesireForm.get('desireDescription').value;
+    const _category =  this.addDesireForm.get('desireCategory').value;
+    const _price = this.addDesireForm.get('desirePrice').value;
 
     return new Desire(null, _description, _category, _price);
   }
@@ -62,14 +62,14 @@ export class AddDesireComponent implements OnInit {
     this.monthlyService.getCategories()
     .subscribe(
       res => this.categories = JSON.parse(res._body).map(v => v.value),
-      err => this.message.error = "Error while retrieving categories"
-    )
+      err => this.message.error = 'Error while retrieving categories'
+    );
   }
-  
-  private resetStatus() : void {
-    this.message = new Message("", "");
-    this.addDesireForm.get("desireCategory").setValue('Food');
-    this.addDesireForm.get("desireDescription").setValue('');
-    this.addDesireForm.get("desirePrice").setValue('');
+
+  private resetStatus(): void {
+    this.message = new Message('', '');
+    this.addDesireForm.get('desireCategory').setValue('Food');
+    this.addDesireForm.get('desireDescription').setValue('');
+    this.addDesireForm.get('desirePrice').setValue('');
   }
 }
